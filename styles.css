@@ -9,20 +9,27 @@ body{
     height: 100vh;
 }
 
+label{
+    font-weight: bold;
+}
 input[type=text], input[type=password]{
     border: none;
-    background-color: gainsboro;
-    border-radius: 10px;
+    background-color: #d8d9db;
+    border-radius: 5px;
     width: 250px;
     padding: 10px;
     margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 input:focus{
     outline-color: black;
 }
 #sign-in-form{
+    display: flex;
+    flex-direction: column;
     margin: 10px;
+    align-items: center;
     border-radius: 10px;
     width: 400px;
     box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
@@ -32,8 +39,6 @@ input:focus{
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 #sign-in-form h1{
@@ -45,7 +50,35 @@ input:focus{
     height: 100px;
     background-color: red;
     color: white;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+#sign-in-form button{
+    background-color: red;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+#sign-in-form button:focus{
+    outline-color: black;
+}
+
+#sign-in-form button:hover{
+    cursor: pointer;
+}
+
+#register{
+    color: red;
+}
+
+#register:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 
