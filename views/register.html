@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Register</h1>
+    <h1 class="header">VR portal</h1>
+
+    <form class="sign-in-register-form">
+        <h1>Create an Account</h1>
+        <div class="form-body">
+            <label for="register-email">Email</label>
+            <input type="text" id="register-email" name="email">
+            <label for="register-first">First Name</label>
+            <input type="text" id="register-first" name="text">
+            <label for="register-last">Last Name</label>
+            <input type="text" id="register-last" name="text">
+            <label for="register-password">Password</label>
+            <input type="password" id="register-password" name="password">
+            <label for="register-password-confirmation">Password Confirmation</label>
+            <input type="password" id="register-password-confirmation" name="password-confirmation">
+            <button>Register</button>
+            <div id="existing Account">Already have an acount? <span id="register">Sign In</span></div>
+        </div>
+    </form>
 </body>
 </html>
