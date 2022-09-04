@@ -1,3 +1,6 @@
+//var child = require('child_process').execFile;
+//var executablePath = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 require('./server/index')
@@ -8,7 +11,9 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+     // preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration:true,
+      contextIsolation:false
     }
   })
 
@@ -17,13 +22,17 @@ const createWindow = () => {
 
 
 app.whenReady().then(() => {
-  createWindow()
+  createWindow();
+
 })
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 
+/*
 ipcMain.on('loadPage', (event, fileName) => {
   win.loadFile(path.join(__dirname, 'views', fileName));
 })
+
+*/

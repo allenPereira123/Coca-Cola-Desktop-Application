@@ -4,24 +4,37 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
     <title>Hello World!</title>
 </head>
 
 <body>
-    <h1 class="header">VR Portal</h1>
-    <form class="sign-in-register-form">
-        <h1>Sign In</h1>
-        <div class="form-body">
-            <label for="sign-email">Email</label>
-            <input type="text" id="sign-email" name="email">
-            <label for="sign-password">Password</label>
-            <input type="password" id="sign-password" name="password">
-            <button>Login</button>
-            <div id="create-account">Don't have an account? <span id="register">Register</span></div>
+    <div class="container h-100 justify-content-md-center align-items-center">
+        <div class="row justify-content-md-center align-items-center h-100">
+            <div class="col-5 ">
+               
+                <div class="card sign-in-form m-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Account Look Up</h5>
+                            <form id = loginForm>
+                                <div class="mb-3">
+                                    <label for="register-fname" class="form-label input-color bold">Employee ID</label>
+                                    <input type="text" class="form-control" id="idInput" placeholder = "Enter Employee ID">
+                                    <div class="invalid-feedback text-center" id = "invalidIdText" id = "invalidIdText"></div>
+                                </div>
+    
+                                <div class="d-grid mt-4">
+                                    <button class="btn btn-danger p-2" type="submit" id = "verifyButton" >Verify ID</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
-    <script src="./index.js"></script>
+    </div>
+    <script src = 'js/bootstrap.min.js'></script>
+    <script src = 'js/index.js'></script>
 </body>
-
 </html>

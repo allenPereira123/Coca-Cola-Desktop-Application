@@ -1,0 +1,14 @@
+body{
+    height:100vh; 
+}
+
+.alert{
+    display:none;
+}
+
+.bold{
+    font-weight:bold;
+}
+#idLabel{
+    margin-bottom: 4px; 
+}

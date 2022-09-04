@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <title>Hello World!</title>
+</head>
+
+<body>
+    <div class="container h-100 justify-content-md-center align-items-center">
+        <div class="row justify-content-md-center align-items-center h-100">
+            <div class="col-5 ">
+                <div class="card sign-in-form m-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Set Password</h3>
+
+                            <div class = 'form-label input-color bold'>Employee Id</div>
+                            <div class="form-label input-color" id = 'id'></div>
+                            <form id = form>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label input-color bold">Choose Password</label>
+                                    <input type="password" class="form-control " id="passwordInput" placeholder = "Enter Password"> 
+                                    <div class="invalid-feedback" id = "invalidPasswordText"></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label input-color bold">Confirm Password</label>
+                                    <input type="password" class="form-control" id="reenterPasswordInput" placeholder = "Enter Password">
+                                    <div class="invalid-feedback" id = "invalidRePasswordText"></div>
+                                </div>
+    
+                                <div class="d-grid mt-4">
+                                    <button class="btn btn-danger p-2" type="submit" id = "loginButton" >Set Password</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src = '../js/bootstrap.min.js'></script>
+    <script src = '../js/firstSignIn.js'></script>
+</body>
+</html>
