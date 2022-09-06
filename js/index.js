@@ -44,23 +44,25 @@ loginForm.addEventListener('submit',async (event) => {
     if (!response.ok)
     {
         invalidIdText.style.display = 'block';
-        invalidIdText.innerText = 'Invalid id. Contact admin to create account';
+        invalidIdText.innerText = 'Invalid Employee Id';
         return; 
     }
 
-    const userData = await response.json(); 
+    const user = await response.json(); 
 
-    localStorage.setItem('rank',userData.user.rank);
-    localStorage.setItem('id',userData.user.id);
+    localStorage.setItem('role',user.role);
+    localStorage.setItem('id',user.id);
             
-    console.log(userData.user);
+    console.log(user);
 
-    if (userData.user.password === null)
+    
+    if (user.password === null)
         loginForm.action = 'views/firstSignIn.html'; 
     else
         loginForm.action = 'views/signIn.html'
 
     loginForm.submit();
+    
 })
 
  

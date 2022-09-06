@@ -1,5 +1,5 @@
 const { app } = require('electron');
-const { response } = require('express');
+const { response, json } = require('express');
 const express = require('express')
 const app_ = express();
 const db = require('../db').db;
@@ -7,21 +7,29 @@ const bcrypt = require('bcrypt');
 app_.use(express.json());
 
 
-app_.get('', (req, res) => {
-  res.status(200);
+app_.get('',(req,res) => {
+
+    res.send({greeting: "Hello"});
 })
+
+
+app_.get('/sendId', (req, res) => {
+  
+    res.status(200).json(global.id)
+})
+
 
 
 async function decrypt(password,hashedPassword,res){
 
   try{
     if (await bcrypt.compare(password,hashedPassword))
-        res.status(200).send('Passwords match'); 
+        return res.status(200).send('Passwords match'); 
     else
-        res.status(404).send('Passwords do not match')
+        return res.status(404).send('Passwords do not match')
 }
   catch{
-    res.status(500).send('Bcrypt failed');
+    return res.status(500).send('Bcrypt failed');
   }
 }
 
@@ -39,6 +47,41 @@ catch{
 }
 }
 
+//deletes user (admin cannot be deleted)
+app_.delete('/deleteUser/:id', (req,res) => {
+  //console.log('hello')
+  let sql = `DELETE FROM Employees WHERE id = ?`;
+  let id = req.params.id; 
+  //console.log(id);
+  db.run(sql,id, (err,results) => {
+      if (err){
+        res.status(500).send(err); 
+      }
+
+        return res.status(200).send(results);
+  })
+});
+
+
+// adds user when admin is creating accounts
+app_.post('/addUser',(req,res) => {
+  let {id,fname,lname,role} = req.body;   
+  let sql = `INSERT INTO Employees(id,fname,lname,role) 
+            values (?,?,?,?)`;
+  
+  db.run(sql,[id,fname,lname,role], (err,results) => {
+      if (err){
+        return res.status(500).send(err.message); 
+      }
+
+        return res.status(200).send('added user');
+  })
+})
+
+
+
+
+
 // test 
 app_.post('/test', async (req,res) => {
   let {password}= req.body; 
@@ -48,18 +91,8 @@ app_.post('/test', async (req,res) => {
 
 })
 
-app_.get('/getUsers', (req, res) => {
-    let sql = `SELECT name FROM Users`
-    db.all(sql, [], (err,rows) => {
-      if (err){
-          throw err;
-      }
 
-      res.send(rows);
-
-    })
-})
-
+// handles login after user has created password
 app_.post('/login',(req,res) => {
   let {id,password} = req.body;  
   let sql = 'SELECT * FROM Employees WHERE ID = ?';
@@ -67,15 +100,15 @@ app_.post('/login',(req,res) => {
   db.get(sql,[id],async (err,user) => { // err is null if no error 
     
     if (err){
-        res.status(500).send(error); 
+        return res.status(500).send(error); 
     }
 
     if (user){
         //console.log(user.password,password);
-        await decrypt(password,user.password,res);
+        return await decrypt(password,user.password,res);
     }
-    else
-      res.status(404).send('user not found')
+    
+    return res.status(404).send('user not found')
   })
 })
 
@@ -88,44 +121,156 @@ app_.put('/setPassword',async (req,res) => {
     db.run(sql,[hashedPassword,id], (err) => {
 
       if (err){
-        res.status(500).send(err);
+        return res.status(500).send(err);
       }
 
-      res.sendStatus(204);
+      return res.sendStatus(204);
     })
     
 })
 
-// gets user info 
-app_.get('/getUser/:id',(req,res) => {
-      let sql = 'SELECT * FROM Employees WHERE ID = ?';
-      let userId = req.params.id; 
+// sets security answer question
+app_.put('/setSecurityAnswer',async (req,res) => {
+  let {id,securityQuestion,securityAnswer}= req.body; 
+  let hashedSecAnswer = await encrypt(securityAnswer,res);
+  let sql = `UPDATE Employees SET
+              security_answer = ?,
+              security_question = ?
+              WHERE id = ?`
+              
+  console.log(hashedSecAnswer);
+  db.run(sql,[hashedSecAnswer,securityQuestion,id], (err) => {
 
-      db.get(sql,[userId],(err,user) => { // err is null if no error 
-        
-        if (err){
-            res.status(500).send(err); 
-        }
-
-        if (user)
-          res.status(200).json({user:user,success:true});
-        else
-          res.status(404).json({user:null,success:false,message:"user not in db"});
-      })
-})
-
-app_.post('/addUser', (req, res) => {
-  let obj = req.body;
-  let sql = 'INSERT INTO users(name) VALUES(?)';
-
-  db.run(sql, [obj.name], (err) => {
     if (err){
-      return console.log(err.message)
+      return res.status(500).send(err);
     }
 
-    res.send('successs');
+    return res.sendStatus(204);
   })
+  
+})
 
+// updates user progress
+app_.put('/updateUserProgress',async (req,res) => {
+  let {sid,progress}= req.body; 
+  let id = global.id
+  let sql = `UPDATE UserProgress SET ${sid} = ${progress} WHERE id = ${id}`
+  db.run(sql,[], (err) => {
+
+    if (err){
+      return res.status(500).send(err);
+    }
+
+    return res.sendStatus(204);
+  })
+})
+
+// returns all users
+app_.get('/getAllUsers',(req,res) => {
+  let sql = `SELECT Employees.fname,Employees.lname,Employees.id,Employees.role
+  FROM Employees`;
+
+  db.all(sql,[],(err,users) => { // err is null if no error 
+    
+      if (err){
+          return res.status(500).send(err); 
+      }
+
+      if (users){
+          res.status(200).send(users);
+          return; 
+      }
+  
+      return res.status(404).send('user not in db'); 
+  })
+});
+
+// returns all users of groups that belong to leader/admin group
+app_.get('/getGroupMembers/:id',(req,res) => {
+  let sql = `SELECT UserProgress.*, Employees.fname, Employees.lname, Groups.group_name
+            FROM UserProgress,GroupMembers,Groups,Employees
+            WHERE UserProgress.id = Employees.id AND Groups.group_id = GroupMembers.group_id AND Employees.id = GroupMembers.member_id AND Groups.creater_id = ?`;
+
+  let groupCreaterId = req.params.id;
+
+  db.all(sql,[groupCreaterId],(err,users) => { 
+    
+      if (err){
+          return res.status(500).send(err); 
+      }
+
+      return res.status(200).send(users);
+  })
+});
+
+// gets user progress
+app_.get('/getUserProgress/:id',(req,res) => {
+  let sql = `SELECT UserProgress.*,Employees.fname,Employees.lname 
+            FROM Employees,UserProgress
+            WHERE Employees.id = ?  AND UserProgress.id = ?
+            `;
+
+  let userId = req.params.id; 
+
+  db.get(sql,[userId,userId],(err,userProgress) => { // err is null if no error 
+    
+      if (err){
+          return res.status(500).send(err); 
+      }
+
+      if (userProgress){
+          res.status(200).send(userProgress);
+          return; 
+      }
+  
+      return res.status(404).send('user not in db'); 
+  })
+});
+
+// gets specific scenario user progress
+app_.get('/getScenarioProgress/:sid',(req,res) => {
+    
+    let scenarioId = req.params.sid;
+    let id = global.id;
+
+    let sql = `select ${scenarioId}
+              from UserProgress
+              where id = ${id}`
+
+    //console.log(global.id);
+
+    db.get(sql,[],(err,scenarioProgress) => { // err is null if no error 
+    
+      if (err){
+          return res.status(500).send(err); 
+      }
+
+        return res.status(200).send(scenarioProgress);
+     
+      //console.log(global.id);
+    
+  })
+})
+
+// gets user info 
+app_.get('/getUser/:id',(req,res) => {
+    let sql = 'SELECT * FROM Employees WHERE ID = ?';
+    let userId = req.params.id; 
+
+    db.get(sql,[userId],(err,user) => { // err is null if no error 
+        
+      if (err){
+          return res.status(500).send(err); 
+      }
+
+      if (user){
+        global.id = user.id;
+        return res.status(200).json(user);
+        //console.log(global.id);
+      }
+        
+      return res.status(404).json('user not in db');
+    })
 })
 
 

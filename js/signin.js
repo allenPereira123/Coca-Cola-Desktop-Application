@@ -52,12 +52,9 @@ form.addEventListener('submit',async (event) => {
         setInvalid();
         return; 
     }
-    else
-        console.log(response);
 
-
-
-    //form.submit(); 
+    form.action = '../views/launchApp.html'
+    form.submit(); 
     
 
  
