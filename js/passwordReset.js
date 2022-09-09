@@ -1,6 +1,4 @@
-//const { app } = require("electron");
 
-//const idInput = document.getElementById('idInput');
 const passwordInput = document.getElementById('passwordInput');
 const reenterPasswordInput = document.getElementById('reenterPasswordInput');
 const form = document.getElementById('form');
@@ -12,15 +10,6 @@ const select = document.getElementById('select');
 const securityQuestionAnswer = document.getElementById('securityQuestionAnswer');
 const invalidSecurityAnswerText = document.getElementById('invalidSecurityAnswerText');
 const invalidSelectText = document.getElementById('invalidSelectText'); 
-//const invalidIdText = document.getElementById('invalidIdText');
-//const verifyButton = document.getElementById('verifyButton');
-//const loginForm = document.getElementById('loginForm');
-//const alert = document.getElementById('alert');
-// add class is-invalid when idInput,passwordInput,reenterpasswordInput are empty 
-// set display block for every inccorect input field 
-// if is-invalid is on and input changes, remove is-invalid from element 
-// 
-
 const inputs = [passwordInput,reenterPasswordInput,securityQuestionAnswer,idInput]; 
 const inputMessages = [invalidPasswordText,invalidRePasswordText,invalidSecurityAnswerText,invalidIdText]; 
 
@@ -106,7 +95,6 @@ form.addEventListener('submit',async (event) => {
     let securityAnswer = securityQuestionAnswer.value;
     let securityQuestion = select.value;
 
-
     let response = await fetch(`http://localhost:3001/getUser/${id}`);
     
     if (!response.ok)
@@ -117,12 +105,38 @@ form.addEventListener('submit',async (event) => {
         return;
     } 
 
-    //let user = await response.json();
-    //console.log(user);
+    let data = {id,securityAnswer};
 
-    let data = {id,password};
-    
     let options = {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+          }
+    }
+
+    // newSecurity answer will be ok if sec aanswers match
+    // securityIndex corresponds with the number associated with the question 
+    // the question selected by the user must match the question in db
+    // both the quesition (securityQuestionIndex === securityQuestion) and the answer must match
+    let checkSecurityAnswer = await fetch("http://localhost:3001/checkSecurityAnswer",options);
+    let user = await response.json();
+    let securityQuestionIndex = user.security_question; 
+
+    console.log(checkSecurityAnswer,securityQuestionIndex,securityQuestion);
+
+    if (!checkSecurityAnswer.ok || securityQuestionIndex != securityQuestion)
+    {
+        securityQuestionAnswer.classList.add('is-invalid'); 
+        invalidSecurityAnswerText.innerText = 'Incorrect answer';
+        invalidSecurityAnswerText.style.display = 'block';
+        return;
+    }
+
+    
+    data = {id,password};
+    
+    options = {
         method: 'PUT',
         body: JSON.stringify(data),
         headers: {
@@ -134,37 +148,10 @@ form.addEventListener('submit',async (event) => {
 
     if (!setPassword.ok)
         return; 
+
+
     
-    
-    data = {id,securityQuestion,securityAnswer};
-
-    options = {
-        method: 'PUT',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-          }
-    }
-    
-    let setSecurityAnswer = await fetch("http://localhost:3001/setSecurityAnswer",options); 
-
-    if (!setSecurityAnswer.ok)
-        return;
-
-    options = {
-        method: 'PUT',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-            }
-    };
-    
-    let sendId = await fetch(`http://localhost:3001/setId/${id}`); 
-
-    if (!sendId.ok)
-        return; 
-
-    form.action = '../views/launchApp.html'; 
+    form.action = '../views/signIn.html'; 
 
     form.submit();
 

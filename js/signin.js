@@ -1,9 +1,9 @@
 const form = document.getElementById('form');
-const idDiv = document.getElementById('id');
+const idInput = document.getElementById('idInput')
 const invalidPasswordText = document.getElementById('invalidPasswordText');
 const passwordInput = document.getElementById('passwordInput');
+const invalidIdtext = document.getElementById('invalidIdText');
 
-idDiv.innerText = localStorage.getItem('id'); 
 
 passwordInput.addEventListener('input', () => {
 
@@ -13,28 +13,62 @@ passwordInput.addEventListener('input', () => {
     }
 })
 
-function handleEmpty(){
-    passwordInput.classList.add('is-invalid'); 
-    invalidPasswordText.innerText = 'Please enter a password'; 
-    invalidPasswordText.style.display = 'block';
-}
+idInput.addEventListener('input', () => {
+
+    if (idInput.classList.contains('is-invalid')){
+        idInput.classList.remove('is-invalid'); 
+        invalidIdtext.style.display = 'none'; 
+    }
+})
 
 function setInvalid(){
     invalidPasswordText.style.display = 'block';
     invalidPasswordText.innerText = 'Invalid Password';
+
+}
+
+function checkEmptyFields(){
+    let isEmpty = false; 
+    
+    if (idInput.value === '')
+    {
+        idInput.classList.add('is-invalid'); 
+        invalidIdtext.innerText = 'Please enter an employee id'; 
+        idInput.style.display = 'block';
+        isEmpty = true; 
+    }
+
+    if (passwordInput.value === '')
+    {
+        passwordInput.classList.add('is-invalid'); 
+        invalidPasswordText.innerText = 'Please enter a password'; 
+        invalidPasswordText.style.display = 'block';
+        isEmpty = true; 
+    }
+
+    return isEmpty;
+
 }
 
 form.addEventListener('submit',async (event) => {
     event.preventDefault(); 
 
-    if (passwordInput.value === '')
-    {
-        handleEmpty(); 
+    if (checkEmptyFields())
         return; 
-    }
+    
+
+    let id = idInput.value; 
+    let user = await fetch(`http://localhost:3001/getUser/${id}`);
+    
+    if (!user.ok)
+    {
+        idInput.classList.add('is-invalid'); 
+        invalidIdText.innerText = 'Id not found';
+        invalidIdText.style.display = 'block';
+        return;
+    } 
 
     const password = passwordInput.value; 
-    const id = localStorage.getItem('id'); 
     const data = {id,password};
 
     const options = {
@@ -53,34 +87,12 @@ form.addEventListener('submit',async (event) => {
         return; 
     }
 
+    let sendId = await fetch(`http://localhost:3001/setId/${id}`); 
+
+    if (!sendId.ok)
+        return; 
+
     form.action = '../views/launchApp.html'
     form.submit(); 
     
-
- 
-
-
-
-
-
-    
-
-
-
-    
-
-    
-
-    
-        
-    
-
-    
 })
-
-
-
-
-
-
-

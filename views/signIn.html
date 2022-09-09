@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+   <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self';-->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/styles.css">
 
@@ -20,7 +20,8 @@
                             <form id = form>
                                 <div class="mb3">
                                     <div id = 'idLabel' class = 'form-label input-color bold'>Employee Id</div>
-                                    <div class="form-label input-color" id = 'id'></div>
+                                    <input type="text" class="form-control" id="idInput" placeholder = "Enter Employee Id"> 
+                                    <div class="invalid-feedback" id = 'invalidIdText'></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label input-color bold">Enter Password</label>
@@ -30,6 +31,8 @@
                                 <div class="d-grid mt-4">
                                     <button class="btn btn-danger p-2" type="submit" id = "loginButton" >Sign In</button>
                                 </div>
+
+                                <a href="resetPassword.html" class="link-primary">Click here to reset password</a>
                             </form>
                     </div>
                 </div>

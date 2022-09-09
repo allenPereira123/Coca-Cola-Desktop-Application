@@ -2,7 +2,10 @@ const launchVRButton = document.getElementById('launchVR');
 
 
 var child = require('child_process').execFile;
-var executablePath = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
+//var executablePath = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
+
+
+var executablePath = "C:\\Users\\allec\\Downloads\\VR\\VR\\VR-Placeholder.exe";
 
 launchVRButton.addEventListener('click', () => {
     

@@ -1,4 +1,3 @@
-
 /*
 var child = require('child_process').execFile;
 var executablePath = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
@@ -50,8 +49,8 @@ loginForm.addEventListener('submit',async (event) => {
 
     const user = await response.json(); 
 
-    localStorage.setItem('role',user.role);
-    localStorage.setItem('id',user.id);
+    //localStorage.setItem('role',user.role);
+    //localStorage.setItem('id',user.id);
             
     console.log(user);
 
@@ -64,8 +63,3 @@ loginForm.addEventListener('submit',async (event) => {
     loginForm.submit();
     
 })
-
- 
-          
-
-            

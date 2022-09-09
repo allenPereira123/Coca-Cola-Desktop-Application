@@ -13,23 +13,27 @@ app_.get('',(req,res) => {
 })
 
 
-app_.get('/sendId', (req, res) => {
-  
-    res.status(200).json(global.id)
+app_.get('/setId/:id', (req, res) => {
+    global.id = req.params.id
+    res.sendStatus(200);
 })
 
+app_.get('/getSignedInId', (req, res) => {
+  let gid = global.id; 
+  res.status(200).send({gid});
+})
 
 
 async function decrypt(password,hashedPassword,res){
 
   try{
     if (await bcrypt.compare(password,hashedPassword))
-        return res.status(200).send('Passwords match'); 
+        return res.status(200).send('passwords match'); 
     else
-        return res.status(404).send('Passwords do not match')
+        return res.status(404).send('Incorrect security answer');
 }
   catch{
-    return res.status(500).send('Bcrypt failed');
+    return res.status(500).send('bcrypt failed');
   }
 }
 
@@ -78,10 +82,6 @@ app_.post('/addUser',(req,res) => {
   })
 })
 
-
-
-
-
 // test 
 app_.post('/test', async (req,res) => {
   let {password}= req.body; 
@@ -89,6 +89,27 @@ app_.post('/test', async (req,res) => {
   console.log(hashedPassword);
   res.send(200);
 
+})
+
+// checks if security answer is correct
+app_.put('/checkSecurityAnswer',(req,res) => {
+  let {id,securityAnswer} = req.body;  
+  //console.log('hello')
+  let sql = `SELECT Employees.security_answer FROM Employees WHERE ID = ?`;
+  
+  db.get(sql,[id],async (err,answer) => { // err is null if no error 
+    
+    if (err){
+        return res.status(500).send('Error retrieving information'); 
+    }
+
+    if (answer){
+        //console.log(securityAnswer,answer);
+        return await decrypt(securityAnswer,answer.security_answer,res);
+    }
+    //console.log(answer);
+    return res.status(404).send('user not found')
+  })
 })
 
 
@@ -138,7 +159,7 @@ app_.put('/setSecurityAnswer',async (req,res) => {
               security_question = ?
               WHERE id = ?`
               
-  console.log(hashedSecAnswer);
+  //console.log(hashedSecAnswer);
   db.run(sql,[hashedSecAnswer,securityQuestion,id], (err) => {
 
     if (err){
@@ -151,6 +172,7 @@ app_.put('/setSecurityAnswer',async (req,res) => {
 })
 
 // updates user progress
+// user must be signed in 
 app_.put('/updateUserProgress',async (req,res) => {
   let {sid,progress}= req.body; 
   let id = global.id
@@ -205,9 +227,9 @@ app_.get('/getGroupMembers/:id',(req,res) => {
 
 // gets user progress
 app_.get('/getUserProgress/:id',(req,res) => {
-  let sql = `SELECT UserProgress.*,Employees.fname,Employees.lname 
-            FROM Employees,UserProgress
-            WHERE Employees.id = ?  AND UserProgress.id = ?
+  let sql = ` SELECT UserProgress.*,Employees.fname,Employees.lname 
+              FROM Employees,UserProgress
+              WHERE Employees.id = ?  AND UserProgress.id = ?
             `;
 
   let userId = req.params.id; 
@@ -234,8 +256,8 @@ app_.get('/getScenarioProgress/:sid',(req,res) => {
     let id = global.id;
 
     let sql = `select ${scenarioId}
-              from UserProgress
-              where id = ${id}`
+                from UserProgress
+                where id = ${id}`
 
     //console.log(global.id);
 
@@ -264,7 +286,7 @@ app_.get('/getUser/:id',(req,res) => {
       }
 
       if (user){
-        global.id = user.id;
+        //global.id = user.id;
         return res.status(200).json(user);
         //console.log(global.id);
       }
