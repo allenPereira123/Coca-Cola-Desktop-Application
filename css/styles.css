@@ -1,5 +1,12 @@
+
+@font-face{
+    font-family:coca-cola;
+    src:url('../coca-cola-ii-cdnfonts/Coca\ Cola\ ii.ttf')
+}
+
 body{
-    height:100vh; 
+    height:100vh;
+    
 }
 
 .alert{
@@ -11,4 +18,24 @@ body{
 }
 #idLabel{
     margin-bottom: 4px; 
+}
+
+#launch-button{
+    margin-top:30px;
+}
+
+.table-wrapper {
+    max-height: 52vh;
+    overflow: auto;
+    display:inline-block;
+  }
+
+#operator-header{
+    font-size:larger;
+}
+
+#coca-cola-logo{
+    font-family:coca-cola;
+    color:red;
+    font-size:3.5vw;
 }

@@ -5,6 +5,10 @@ const app_ = express();
 const db = require('../db').db;
 const bcrypt = require('bcrypt');
 app_.use(express.json());
+const cors = require('cors'); 
+app_.use(cors({
+  origin: 'http://127.0.0.1:5500'
+}))
 
 
 app_.get('',(req,res) => {
@@ -18,9 +22,25 @@ app_.get('/setId/:id', (req, res) => {
     res.sendStatus(200);
 })
 
-app_.get('/getSignedInId', (req, res) => {
-  let gid = global.id; 
-  res.status(200).send({gid});
+// gets user info 
+app_.get('/getSignedInId',(req,res) => {
+  let sql = 'SELECT * FROM Employees WHERE ID = ?';
+  let userId = global.id 
+
+  db.get(sql,[userId],(err,user) => { // err is null if no error 
+      
+    if (err){
+        return res.status(500).send(err); 
+    }
+
+    if (user){
+      
+      return res.status(200).json(user);
+      
+    }
+      
+    return res.status(404).json('user not in db');
+  })
 })
 
 
@@ -176,7 +196,7 @@ app_.put('/setSecurityAnswer',async (req,res) => {
 app_.put('/updateUserProgress',async (req,res) => {
   let {sid,progress}= req.body; 
   let id = global.id
-  let sql = `UPDATE UserProgress SET ${sid} = ${progress} WHERE id = ${id}`
+  let sql = `UPDATE UserProgress SET ${sid} = ${progress} WHERE id = 9876`
   db.run(sql,[], (err) => {
 
     if (err){
@@ -227,7 +247,7 @@ app_.get('/getGroupMembers/:id',(req,res) => {
 
 // gets user progress
 app_.get('/getUserProgress/:id',(req,res) => {
-  let sql = ` SELECT UserProgress.*,Employees.fname,Employees.lname 
+  let sql = ` SELECT UserProgress.* 
               FROM Employees,UserProgress
               WHERE Employees.id = ?  AND UserProgress.id = ?
             `;
