@@ -17,7 +17,7 @@ const createWindow = () => {
     }
   })
 
-  win.loadFile('index.html')
+  win.loadFile('signIn.html')
 }
 
 

@@ -31,7 +31,7 @@ async function loadData(){
     userType.innerText = `User Type : ${result.role}`
 
     //REMEBER TO USE ID FROM USER
-    response = await fetch(`http://localhost:3001/getUserProgress/9876`); 
+    response = await fetch(`http://localhost:3001/getUserProgress/${result.id}`); 
 
     if (!response.ok)
         return; 

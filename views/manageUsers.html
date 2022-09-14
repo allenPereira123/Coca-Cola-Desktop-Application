@@ -11,24 +11,217 @@
 </head>
 <body>
 
+    <!-- Modal -->
+<div class="modal fade" id="viewUserModal" tabindex="-1" role="dialog" aria-labelledby="viewUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Modal title</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+            <div class="table-wrapper d-flex justify-content-center">
+                <table class="table table-bordered overflow-auto table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">SCENARIO/SECTION</th>
+                        <th scope="col">COMPLETION</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Product feed</th>
+                            <td id = "product-feed">Complete</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Blank Magazine</th>
+                            <td id = "blank-magazine">Incomplete</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Collating System</th>
+                            <td id = "collating-system">Completed</td>
+                        </tr>
+                        <tr >
+                            <th scope="row">Blank Suction</th>
+                            <td id = "blank_suction">Completed</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Gluing</th>
+                            <td id = "gluing">Completed</td>
+                        </tr>
+                        <tr >
+                            <th scope="row">Film Wrap</th>
+                            <td id = "film-wrap">Completed</td>
+                        </tr>
+                        <tr >
+                        <tr>
+                            <th scope="row">HMI</th>
+                            <td id = "hmi">Completed</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Blank Feed</th>
+                            <td id = "blank-feed">Completed</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Folding</th>
+                            <td id = "folding">Completed</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Scenario 1</th>
+                            <td>
+                                <div class="progress justify-content-space-between">
+                                    <div  id = "s1-progress-bar"class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <div id = "s1-progress-percentage" class="text-center">100%</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Scenario 2</th>
+                                <td>   
+                                    <div class="progress justify-content-space-between">
+                                        <div id = "s2-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                        </div>
+                                    </div>
+                                    <div id = "s2-progress-percentage" class = "text-center">100%</div>
+                                </td>                                            
+                        </tr>
+                        <tr>
+                            <th scope="row">Scenario 3</th>
+                            <td>
+                                <div class="progress justify-content-space-between">
+                                    <div id = "s3-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <div  id = "s3-progress-percentage"class="text-center">100%</div>
+                            </td>
+                        </tr>
 
-    <div class="row w-100 p-2 mb-3 bg-light">
-        <i class="bi-arrow-left"></i>
-        <div class="col-3 d-flex justify-content-center">
-            COCACOLALOGO
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-3 d-flex justify-content-center navbar-brand bold">
-            Hello, Allec Pereira
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
         </div>
-        <div class="col-3 d-flex justify-content-center bold">
-            Admin
-        </div>
-        <div class="col-3 d-flex justify-content-center">
-            <button>Logout</button>
-        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="container-fluid h-100 d-flex flex-column align-items-center justify-content-center">
+  <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteUserModalTitle">Delete Warning</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.9522 16.3536L10.2152 5.85658C10.9531 4.38481 13.0539 4.3852 13.7913 5.85723L19.0495 16.3543C19.7156 17.6841 18.7487 19.25 17.2613 19.25H6.74007C5.25234 19.25 4.2854 17.6835 4.9522 16.3536Z"/>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10V12"/>
+                    <circle cx="12" cy="16" r="1" fill="currentColor"/>
+                </svg>
+                <div id = "deleteUserMessage" class = "m-2">
+                    
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id = "deleteModalButton" data-bs-dismiss="modal">Delete</button>
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addUserModalTitle">Add Employee</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="toast align-items-center ms-3 border-success border-522" id = "toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000000">
+                <div class="d-flex align-items-center">
+                    <svg width="35" zoomAndPan="magnify" viewBox="0 0 30 30.000001" height="35" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="id1"><path d="M 2.328125 4.222656 L 27.734375 4.222656 L 27.734375 24.542969 L 2.328125 24.542969 Z M 2.328125 4.222656 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#id1)"><path fill="rgb(13.729858%, 12.159729%, 12.548828%)" d="M 27.5 7.53125 L 24.464844 4.542969 C 24.15625 4.238281 23.65625 4.238281 23.347656 4.542969 L 11.035156 16.667969 L 6.824219 12.523438 C 6.527344 12.230469 6 12.230469 5.703125 12.523438 L 2.640625 15.539062 C 2.332031 15.84375 2.332031 16.335938 2.640625 16.640625 L 10.445312 24.324219 C 10.59375 24.472656 10.796875 24.554688 11.007812 24.554688 C 11.214844 24.554688 11.417969 24.472656 11.566406 24.324219 L 27.5 8.632812 C 27.648438 8.488281 27.734375 8.289062 27.734375 8.082031 C 27.734375 7.875 27.648438 7.679688 27.5 7.53125 Z M 27.5 7.53125 " fill-opacity="1" fill-rule="nonzero"/></g></svg>
+                  <div class="toast-body">
+                    Employee successfully added.
+                 </div>
+                  <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <div class="card sign-in-form m-3">
+                <div class="card-body">
+                        <form id = form>
+                            <div class="mb-3">
+                                <div class = 'form-label input-color bold' id = 'idLabel'>Employee Id</div>
+                                <input type="text" class="form-control" id="idInput" placeholder = "Enter Employee Id"> 
+                                <div class="invalid-feedback" id = "invalidIdText"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fname" class="form-label input-color bold">Employee's Firstname</label>
+                                <input type="text" class="form-control " id="fnameInput" placeholder = "Enter Employee's First Name"> 
+                                <div class="invalid-feedback" id = "invalidFnameText"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Lastname" class="form-label input-color bold">Employee's Last Name</label>
+                                <input type="text" class="form-control" id="lnameInput" placeholder = "Enter Employee's Last Name">
+                                <div class="invalid-feedback" id = "invalidLnameText"></div>
+                            </div>
+                            <div class = "mb-3">
+                                <label for="securityQuestion" class="form-label input-color bold">Employee Role</label>
+                                <select id = "select" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    <option selected value = "0">Select Employee Role</option>
+                                    <option value="1">Operator</option>
+                                    <option value="2">Leader</option>
+                                    <option value="3">Admin</option>
+                                </select>
+                                <div class = "invalid-feedback" id = "invalidSelectText"></div>
+                            </div>     
+                        </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id = "addUserButton">Add</button>
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="row w-100 p-0 d-flex align-items-center header bg-light">
+    <div class="col-3 d-flex justify-content-center" id = "coca-cola-logo">CocaCola
+    </div>
+    <div class="col-3 d-flex justify-content-center navbar-brand bold" id = "greeting">
+        Hello, Allec Pereira
+    </div>
+    <div class="col-3 d-flex justify-content-center bold" id = "userType">
+        User Type : Operator
+    </div>
+    <div class="col-3 d-flex justify-content-center" id = "logout">
+        <form action = "signIn.html">
+            <button class = "btn btn-danger">Logout</button>
+        </form>
+    </div>
+</div>
+
+    <div class="container-fluid h-100 d-flex flex-column align-items-center justify-content-center bg-light">
         
             <div class="row mb-0">
                 <div class="col">    
@@ -44,107 +237,9 @@
                                         <th scope = "col">User Type</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">xxxxxx</th>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-dark">View</a>
-                                        </td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">xxxxxxx</th>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-dark">View</a>
-                                        </td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">xxxxxxx</th>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-dark">View</a>
-                                        </td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">xxxxxxx</th>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-dark">View</a>
-                                        </td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">xxxxxxx</th>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-dark">View</a>
-                                        </td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">xxxxxxx</th>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-dark">View</a>
-                                        </td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">xxxxxxx</th>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-dark">View</a>
-                                        </td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">xxxxxxx</th>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>xxxxxx</td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-dark">View</a>
-                                        </td>
-                                        <td>
-                                            <a href = "" class = "btn btn-sm btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                    
-                                    
-
-                                    </tbody>
+                                        <tbody id = "tableBody">
+                                            
+                                        </tbody>
                                 </table>
                             </div>
                     </div>
@@ -153,16 +248,13 @@
 
             <div class="row">
                 <div class="col">
-                    <div class="btn btn-danger mb-5" id = "launch-button">Add User</div>
+                    <button class="btn btn-danger mb-5" id = "launch-button" data-bs-toggle="modal" data-bs-target="#addUserModal">Add User</div>
                 </div>
             </div>
     </div>
 
-       
- </div>
-
-
     <script src = '../js/bootstrap.min.js'></script>
+    <script src = '../js/manageUsers.js'></script>
 
 </body>
 </html>
