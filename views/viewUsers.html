@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>manageUsers</title>
+    <title>viewUsers</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel = "stylesheet" href ='../css/styles.css'>
 </head>
@@ -111,86 +111,6 @@
     </div>
   </div>
 
-  <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModelLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteUserModalTitle">Delete Warning</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true"></span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="alert alert-danger d-flex align-items-center" role="alert">
-                <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.9522 16.3536L10.2152 5.85658C10.9531 4.38481 13.0539 4.3852 13.7913 5.85723L19.0495 16.3543C19.7156 17.6841 18.7487 19.25 17.2613 19.25H6.74007C5.25234 19.25 4.2854 17.6835 4.9522 16.3536Z"/>
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10V12"/>
-                    <circle cx="12" cy="16" r="1" fill="currentColor"/>
-                </svg>
-                <div id = "deleteUserMessage" class = "m-2">
-                    
-                </div>
-              </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" id = "deleteModalButton" data-bs-dismiss="modal">Delete</button>
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModelLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addUserModalTitle">Add User</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true"></span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="card sign-in-form m-3">
-                <div class="card-body">
-                        <form id = form>
-                            <div class="mb-3">
-                                <div class = 'form-label input-color bold' id = 'idLabel'>Id</div>
-                                <input type="text" class="form-control" id="idInput" placeholder = "Enter Id"> 
-                                <div class="invalid-feedback" id = "invalidIdText"></div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="fname" class="form-label input-color bold">First Name</label>
-                                <input type="text" class="form-control " id="fnameInput" placeholder = "Enter First Name"> 
-                                <div class="invalid-feedback" id = "invalidFnameText"></div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="Lastname" class="form-label input-color bold">Last Name</label>
-                                <input type="text" class="form-control" id="lnameInput" placeholder = "Enter Last Name">
-                                <div class="invalid-feedback" id = "invalidLnameText"></div>
-                            </div>
-                            <div class = "mb-3">
-                                <label for="securityQuestion" class="form-label input-color bold">Role</label>
-                                <select id = "select" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected value = "0">Select User Role</option>
-                                    <option value="1">Operator</option>
-                                    <option value="2">Leader</option>
-                                    <option value="3">Admin</option>
-                                </select>
-                                <div class = "invalid-feedback" id = "invalidSelectText"></div>
-                            </div>     
-                        </form>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" id = "addUserButton">Add</button>
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
 
 
 
@@ -198,7 +118,7 @@
   <div class="row w-100 p-0 d-flex align-items-center header bg-light">
 
     <div class="col-1 d-flex justify-content-center" id = "back-button">
-    <a href = "admin.html">
+    <a href = "leader.html">
         <div class="btn">
         <svg width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="currentColor" d="M48 256c0 114.87 93.13 208 208 208s208-93.13 208-208S370.87 48 256 48S48 141.13 48 256Zm212.65-91.36a16 16 0 0 1 .09 22.63L208.42 240H342a16 16 0 0 1 0 32H208.42l52.32 52.73A16 16 0 1 1 238 347.27l-79.39-80a16 16 0 0 1 0-22.54l79.39-80a16 16 0 0 1 22.65-.09Z"/></svg>
         </div>
@@ -254,15 +174,11 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <button class="btn btn-danger mb-5" id = "launch-button" data-bs-toggle="modal" data-bs-target="#addUserModal">Add User</div>
-                </div>
-            </div>
+            
     </div>
 
     <script src = '../js/bootstrap.min.js'></script>
-    <script src = '../js/manageUsers.js'></script>
+    <script src = '../js/viewUsers.js'></script>
 
 </body>
 </html>

@@ -117,8 +117,7 @@ form.addEventListener('submit',async (event) => {
         return;
     } 
 
-    //let user = await response.json();
-    //console.log(user);
+    let user = await response.json();
 
     let data = {id,password};
     
@@ -164,7 +163,12 @@ form.addEventListener('submit',async (event) => {
     if (!sendId.ok)
         return; 
 
-    form.action = '../views/launchApp.html'; 
+    if (user.role === 'Operator')
+        form.action = 'operator.html'; 
+    else if (user.role === 'Leader')
+        form.action = 'leader.html'; 
+    else
+        form.action = 'admin.html'; 
 
     form.submit();
 

@@ -17,7 +17,7 @@ body{
     font-weight:bold;
 }
 #idLabel{
-    margin-bottom: 4px; 
+    margin-bottom: 8px; 
 }
 
 #launch-button{
@@ -38,4 +38,27 @@ body{
     font-family:coca-cola;
     color:red;
     font-size:3.5vw;
+}
+#title{
+    font-size:larger;
+}
+
+#greeting{
+    font-size:large;
+}
+#userType{
+    font-size:large;
+}
+
+a:link {color: black;}      /* unvisited link */
+a:visited {color: black;}   /* visited link */
+a:hover {color: black;}     /* mouse over link */
+a:active {color: black;}
+
+#forgotPasswordLink:hover{
+    color:blue;
+}
+
+#firstTimeLink:hover{
+    color:blue;
 }

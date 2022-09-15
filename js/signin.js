@@ -90,9 +90,18 @@ form.addEventListener('submit',async (event) => {
     let sendId = await fetch(`http://localhost:3001/setId/${id}`); 
 
     if (!sendId.ok)
-        return; 
+        console.log('id not ok')
 
-    form.action = '../views/launchApp.html'
+        let newUser = await user.json(); 
+    
+    if (newUser.role === "Operator")
+        form.action = 'operator.html'; 
+    else if (newUser.role === "Leader")
+        form.action = 'leader.html'; 
+    else
+        form.action = 'admin.html'; 
+
+
     form.submit(); 
     
 })

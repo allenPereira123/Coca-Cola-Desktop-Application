@@ -10,17 +10,17 @@
     <title>Hello World!</title>
 </head>
 
-<body>
+<body class = "bg-light">
     <div class="container h-100 justify-content-md-center align-items-center">
         <div class="row justify-content-md-center align-items-center h-100">
             <div class="col-5 ">
                 <div class="card sign-in-form m-3">
-                    <div class="card-body">
+                    <div class="card-body w-100">
                         <h3 class="card-title">Sign in</h3>
                             <form id = form>
                                 <div class="mb3">
                                     <div id = 'idLabel' class = 'form-label input-color bold'>Employee Id</div>
-                                    <input type="text" class="form-control" id="idInput" placeholder = "Enter Employee Id"> 
+                                    <input type="text" class="form-control" id="idInput" placeholder = "Enter Id"> 
                                     <div class="invalid-feedback" id = 'invalidIdText'></div>
                                 </div>
                                 <div class="mb-3">
@@ -28,14 +28,14 @@
                                     <input type="password" class="form-control " id="passwordInput" placeholder = "Enter Password"> 
                                     <div class="invalid-feedback" id = "invalidPasswordText"></div>
                                 </div>
-                                <div class="d-grid mt-4">
+                                <div class="d-grid mt-4 mb-3">
                                     <button class="btn btn-danger p-2" type="submit" id = "loginButton" >Sign In</button>
                                 </div>
-                            </form>
-                                <div class="d-flex flex-column">
-                                    <a href="resetPassword.html" class="link-primary">Click here to reset password</a>
-                                    <a href="firstSignIn.html" class="link-primary">First time signing in? Click here</a>
-                                </div>
+                            </form>  
+                            <div class="d-flex flex-column align-content-center w-100">
+                                <a href="firstSignIn.html" class = "mb-2 btn px-0" id = "firstTimeLink">First time signing in? Click here.</a>
+                                <a href="resetPassword.html" class = "btn px-0" id = "forgotPasswordLink" >Forgot password? Click here to reset.</a>
+                            </div>
                     </div>
                 </div>
             </div>

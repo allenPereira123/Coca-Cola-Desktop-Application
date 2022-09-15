@@ -1,4 +1,4 @@
-const {getCurrentWindow} = require('electron');
+
 
 const productFeed = document.getElementById('product-feed');
 const blankMagazine = document.getElementById('blank-magazine');
@@ -18,56 +18,16 @@ const s3ProgressPercentage = document.getElementById('s3-progress-percentage');
 const greeting = document.getElementById('greeting'); 
 const userType = document.getElementById('userType'); 
 const logout = document.getElementById('logout');
-const deleteUserMessage = document.getElementById('deleteUserMessage');
-const deleteModalButton = document.getElementById('deleteModalButton')
 const tableBody = document.getElementById('tableBody');
-const displayAddUserModalButton = document.getElementById('launch-button');
-const addUserButton = document.getElementById('addUserButton');
-const idInput = document.getElementById('idInput'); 
-const invalidIdText = document.getElementById('invalidIdText'); 
-const fnameInput = document.getElementById('fnameInput'); 
-const invalidFnameText = document.getElementById('invalidFnameText'); 
-const lnameInput = document.getElementById('lnameInput'); 
-const invalidLnameText = document.getElementById('invalidLnameText'); 
-const select = document.getElementById('select'); 
-const invalidSelectText = document.getElementById('invalidSelectText'); 
-const toast = document.getElementById('toast'); 
 const viewUserProgress = document.getElementById('viewUserProgress');
 const backButton = document.getElementById('back-button'); 
+
 
 var users = []; 
 var selectedUser = null; // global variable watchout
 
 
 loadData(); 
-
-deleteModalButton.addEventListener('click',async (event) => {
-    
-    console.log(selectedUser.id);
-    await fetch(`http://localhost:3001/deleteUser/${selectedUser.id}`,{method:'DELETE'});
-    //http://localhost:3001/deleteUser/7462
-    window.location.reload(); 
-    
-})
-
-
-async function handleDelete(event){
-
-    let targetUser = null; 
-
-    for (let index = 0; index < users.length; index++){
-        if (event.target.id == index){
-            targetUser = users[index]; 
-            break;
-        }
-    }
-
-    console.log(targetUser);
-
-    deleteUserMessage.innerText = `Are you sure you want to delete user ${targetUser.id}?`
-
-    selectedUser = targetUser; 
-}
 
 async function handleView(event){
     //console.log(event.target.id); 
@@ -79,14 +39,15 @@ async function handleView(event){
             break;
         }
     }
+    
+    
 
     let response = await fetch(`http://localhost:3001/getUserProgress/${targetUser.id}`);
 
     if (!response.ok)
         return; 
 
-    viewUserProgress.innerText = `User ${targetUser.id} Progress Log`;
-
+    viewUserProgress.innerText = `User ${targetUser.id} Progress Log`
 
     let userProgress = await response.json(); 
 
@@ -137,17 +98,8 @@ function displayUsers(){
         viewButton.innerText = `View`; 
         tdView.append(viewButton); 
         
-        const tdDelete = document.createElement('td');
-        const deleteButton = document.createElement('button'); 
-        deleteButton.setAttribute("class","btn btn-sm btn-danger");
-        deleteButton.setAttribute('data-bs-target','#deleteUserModal');  
-        deleteButton.setAttribute('data-bs-toggle','modal');
-        deleteButton.setAttribute('id',`${index}`);  
-        deleteButton.addEventListener('click',handleDelete); 
-        deleteButton.innerText = `Delete`
-        tdDelete.append(deleteButton);
         
-        tableRow.append(th,tdFname,tdLname,tdUserType,tdView,tdDelete); 
+        tableRow.append(th,tdFname,tdLname,tdUserType,tdView); 
         tableBody.append(tableRow)
     });
 }
@@ -177,96 +129,3 @@ async function loadData(){
     displayUsers(); 
 }
 
-idInput.addEventListener('input', () => {
-    idInput.classList.remove('is-invalid'); 
-    invalidIdText.style.display = 'none'; 
-})
-
-fnameInput.addEventListener('input',() => {
-    fnameInput.classList.remove('is-invalid'); 
-    invalidFnameText.style.display = 'none'; 
-})
-
-lnameInput.addEventListener('input', () => {
-    lnameInput.classList.remove('is-invalid'); 
-    invalidLnameText.style.display = 'none'; 
-})
-
-select.addEventListener('input', () => {
-    select.classList.remove('is-invalid'); 
-    invalidSelectText.style.display = 'none'; 
-})
-
-function handleEmptyFields(){
-    
-    if (idInput.value === ''){
-        idInput.classList.add('is-invalid'); 
-        invalidIdText.innerText = 'Please enter an ID.'; 
-        invalidIdText.style.display = 'block'; 
-    }
-    if (fnameInput.value === ''){
-        fnameInput.classList.add('is-invalid'); 
-        invalidFnameText.innerText = 'Please enter a first name.';
-        invalidFnameText.style.display = 'block'; 
-    }
-    if (lnameInput.value === ''){
-        lnameInput.classList.add('is-invalid'); 
-        invalidLnameText.innerText = 'Please enter a last name'; 
-        invalidLnameText.style.display = 'block'; 
-    }
-    if (select.value == 0){
-        select.classList.add('is-invalid'); 
-        invalidSelectText.innerText = "Please select an employee role"; 
-        invalidSelectText.style.display = 'block'; 
-    }
-}
-
-addUserButton.addEventListener('click',async () => {
-
-    if (idInput.value === '' || fnameInput === '' || lnameInput === '' || select.value == 0)
-    {
-        handleEmptyFields(); 
-        return; 
-    }
-
-    let id = idInput.value; 
-    let fname = fnameInput.value; 
-    let lname = lnameInput.value;
-    let role = '' 
-    
-    if (select.value == 1)
-        role = 'Operator'; 
-    else if (select.value == 2)
-        role = 'Leader'; 
-    else
-        role = 'Admin'; 
-
-    data = {id,fname,lname,role};
-    
-    console.log(data)
-
-    let options = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-          }
-    }
-
-    
-    let successfulAdd = await fetch(`http://localhost:3001/addUser`,options);
-
-       
-    if (!successfulAdd.ok){
-        idInput.classList.add('is-invalid'); 
-        invalidIdText.innerText = "User already exists."
-        return; 
-    }
-
-    
-
-    let initToast = new bootstrap.Toast(toast); 
-    initToast.show(); 
-
-
-})
