@@ -62,9 +62,3 @@ async function loadData(){
 
 loadData(); 
 
-
-
-
-
-
-

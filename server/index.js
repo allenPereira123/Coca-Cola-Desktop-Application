@@ -16,13 +16,39 @@ app_.get('',(req,res) => {
     res.send({greeting: "Hello"});
 })
 
-
+// sets id of user that is logged in 
 app_.get('/setId/:id', (req, res) => {
     global.id = req.params.id
     res.sendStatus(200);
 })
 
-// gets user info 
+// returns signed in info to unity
+app_.get('/getSignedInUserInfo',(req,res) => {
+  let sql = `SELECT Employees.fname,Employees.lname,UserProgress.*
+             FROM Employees,UserProgress
+             WHERE Employees.id = UserProgress.id AND Employees.id = ?`
+  let userId = global.id 
+
+  db.get(sql,[userId],(err,user) => { // err is null if no error 
+      
+    if (err){
+        return res.status(500).send(err); 
+    }
+
+    if (user){
+      
+      return res.status(200).json(user);
+      
+    }
+    else{  
+      return res.status(404).json('user not in db');
+    }
+  })
+})
+
+
+
+// gets user info only (no progress) 
 app_.get('/getSignedInId',(req,res) => {
   let sql = 'SELECT * FROM Employees WHERE ID = ?';
   let userId = global.id 
@@ -73,10 +99,10 @@ catch{
 
 //deletes user (admin cannot be deleted)
 app_.delete('/deleteUser/:id', (req,res) => {
-  //console.log('hello')
+  
   let sql = `DELETE FROM Employees WHERE id = ?`;
   let id = req.params.id; 
-  //console.log(id);
+  
   db.run(sql,id, (err,results) => {
       if (err){
         res.status(500).send(err); 
@@ -118,20 +144,20 @@ app_.post('/test', async (req,res) => {
 // checks if security answer is correct
 app_.put('/checkSecurityAnswer',(req,res) => {
   let {id,securityAnswer} = req.body;  
-  //console.log('hello')
+  
   let sql = `SELECT Employees.security_answer FROM Employees WHERE ID = ?`;
   
-  db.get(sql,[id],async (err,answer) => { // err is null if no error 
+  db.get(sql,[id],async (err,answer) => { 
     
     if (err){
         return res.status(500).send('Error retrieving information'); 
     }
 
     if (answer){
-        //console.log(securityAnswer,answer);
+        
         return await decrypt(securityAnswer,answer.security_answer,res);
     }
-    //console.log(answer);
+   
     return res.status(404).send('user not found')
   })
 })
@@ -142,14 +168,13 @@ app_.post('/login',(req,res) => {
   let {id,password} = req.body;  
   let sql = 'SELECT * FROM Employees WHERE ID = ?';
   
-  db.get(sql,[id],async (err,user) => { // err is null if no error 
+  db.get(sql,[id],async (err,user) => { 
     
     if (err){
         return res.status(500).send(error); 
     }
 
     if (user){
-        //console.log(user.password,password);
         return await decrypt(password,user.password,res);
     }
     
@@ -183,7 +208,6 @@ app_.put('/setSecurityAnswer',async (req,res) => {
               security_question = ?
               WHERE id = ?`
               
-  //console.log(hashedSecAnswer);
   db.run(sql,[hashedSecAnswer,securityQuestion,id], (err) => {
 
     if (err){
@@ -216,7 +240,7 @@ app_.get('/getAllUsers',(req,res) => {
   let sql = `SELECT Employees.fname,Employees.lname,Employees.id,Employees.role
   FROM Employees`;
 
-  db.all(sql,[],(err,users) => { // err is null if no error 
+  db.all(sql,[],(err,users) => {
     
       if (err){
           return res.status(500).send(err); 
@@ -258,7 +282,7 @@ app_.get('/getUserProgress/:id',(req,res) => {
 
   let userId = req.params.id; 
 
-  db.get(sql,[userId,userId],(err,userProgress) => { // err is null if no error 
+  db.get(sql,[userId,userId],(err,userProgress) => { 
     
       if (err){
           return res.status(500).send(err); 
@@ -283,18 +307,13 @@ app_.get('/getScenarioProgress/:sid',(req,res) => {
                 from UserProgress
                 where id = ${id}`
 
-    //console.log(global.id);
-
-    db.get(sql,[],(err,scenarioProgress) => { // err is null if no error 
+    db.get(sql,[],(err,scenarioProgress) => { 
     
       if (err){
           return res.status(500).send(err); 
       }
 
         return res.status(200).send(scenarioProgress);
-     
-      //console.log(global.id);
-    
   })
 })
 
@@ -303,16 +322,14 @@ app_.get('/getUser/:id',(req,res) => {
     let sql = 'SELECT * FROM Employees WHERE ID = ?';
     let userId = req.params.id; 
 
-    db.get(sql,[userId],(err,user) => { // err is null if no error 
+    db.get(sql,[userId],(err,user) => {
         
       if (err){
           return res.status(500).send(err); 
       }
 
       if (user){
-        //global.id = user.id;
         return res.status(200).json(user);
-        //console.log(global.id);
       }
         
       return res.status(404).json('user not in db');
@@ -323,4 +340,3 @@ app_.get('/getUser/:id',(req,res) => {
 app_.listen(3001, () => {
   console.log("Your server is running on port 3001")
 })
-
