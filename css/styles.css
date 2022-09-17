@@ -30,6 +30,12 @@ body{
     display:inline-block;
   }
 
+  .form-wrapper {
+    max-height: 52vh;
+    overflow: auto;
+    display:inline-block;
+  }
+
 #operator-header{
     font-size:larger;
 }
@@ -56,9 +62,5 @@ a:hover {color: black;}     /* mouse over link */
 a:active {color: black;}
 
 #forgotPasswordLink:hover{
-    color:blue;
-}
-
-#firstTimeLink:hover{
-    color:blue;
+    color: #0000EE;
 }

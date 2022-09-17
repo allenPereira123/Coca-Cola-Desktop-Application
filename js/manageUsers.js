@@ -29,14 +29,24 @@ const fnameInput = document.getElementById('fnameInput');
 const invalidFnameText = document.getElementById('invalidFnameText'); 
 const lnameInput = document.getElementById('lnameInput'); 
 const invalidLnameText = document.getElementById('invalidLnameText'); 
-const select = document.getElementById('select'); 
+const selectUserType = document.getElementById('selectUserType'); 
+const selectQuestion = document.getElementById('selectQuestion'); 
 const invalidSelectText = document.getElementById('invalidSelectText'); 
 const toast = document.getElementById('toast'); 
 const viewUserProgress = document.getElementById('viewUserProgress');
 const backButton = document.getElementById('back-button'); 
+const passwordInput = document.getElementById('passwordInput'); 
+const invalidPasswordText = document.getElementById('invalidPassword'); 
+const rePassword = document.getElementById('re-enter'); 
+const invalidRePassword = document.getElementById('invalidRePassword'); 
+const invalidRoleText = document.getElementById('invalidRoleText'); 
+const secAnswer = document.getElementById('secAnswer'); 
+const invalidSecAnswerText = document.getElementById('invalidSecAnswerText'); 
+
 
 var users = []; 
 var selectedUser = null; // global variable watchout
+var userCnt = 0; 
 
 
 loadData(); 
@@ -47,6 +57,7 @@ deleteModalButton.addEventListener('click',async (event) => {
     await fetch(`http://localhost:3001/deleteUser/${selectedUser.id}`,{method:'DELETE'});
     //http://localhost:3001/deleteUser/7462
     window.location.reload(); 
+    console.log("hello");
     
 })
 
@@ -64,7 +75,7 @@ async function handleDelete(event){
 
     console.log(targetUser);
 
-    deleteUserMessage.innerText = `Are you sure you want to delete user ${targetUser.id}?`
+    deleteUserMessage.innerText = `Deleting user ${targetUser.id} cannot be undone.`
 
     selectedUser = targetUser; 
 }
@@ -192,58 +203,144 @@ lnameInput.addEventListener('input', () => {
     invalidLnameText.style.display = 'none'; 
 })
 
-select.addEventListener('input', () => {
-    select.classList.remove('is-invalid'); 
-    invalidSelectText.style.display = 'none'; 
+selectUserType.addEventListener('input', () => {
+    selectUserType.classList.remove('is-invalid'); 
+    invalidRoleText.style.display = 'none'; 
+})
+
+passwordInput.addEventListener('input', () => {
+    passwordInput.classList.remove("is-invalid"); 
+    invalidPasswordText.style.display = 'none'; 
+})
+
+rePassword.addEventListener('input',() => {
+    rePassword.classList.remove('is-invalid'); 
+    invalidRePassword.style.display = 'none';
+})
+
+selectQuestion.addEventListener('input',() => {
+    selectQuestion.classList.remove('is-invalid'); 
+    invalidSelectText.style.display = 'none';
+}); 
+
+secAnswer.addEventListener('input', () => {
+    secAnswer.classList.remove('is-invalid'); 
+    invalidSecAnswerText.style.display = 'none';
 })
 
 function handleEmptyFields(){
-    
+    let isEmpty = false; 
+
     if (idInput.value === ''){
         idInput.classList.add('is-invalid'); 
         invalidIdText.innerText = 'Please enter an ID.'; 
         invalidIdText.style.display = 'block'; 
+        isEmpty =  true;
     }
     if (fnameInput.value === ''){
         fnameInput.classList.add('is-invalid'); 
         invalidFnameText.innerText = 'Please enter a first name.';
-        invalidFnameText.style.display = 'block'; 
+        invalidFnameText.style.display = 'block';
+        isEmpty =  true;                                                                            
     }
     if (lnameInput.value === ''){
         lnameInput.classList.add('is-invalid'); 
-        invalidLnameText.innerText = 'Please enter a last name'; 
+        invalidLnameText.innerText = 'Please enter a last name.'; 
         invalidLnameText.style.display = 'block'; 
     }
-    if (select.value == 0){
-        select.classList.add('is-invalid'); 
-        invalidSelectText.innerText = "Please select an employee role"; 
-        invalidSelectText.style.display = 'block'; 
+    if (passwordInput.value === ''){
+        passwordInput.classList.add('is-invalid'); 
+        invalidPasswordText.innerText = 'Please enter a password.'; 
+        invalidPasswordText.style.display = 'block'; 
+        isEmpty =  true; 
     }
+    if (rePassword.value === ''){
+        rePassword.classList.add('is-invalid'); 
+        invalidRePassword.innerText = 'Please enter a password.'; 
+        invalidRePassword.style.display = 'block';
+        isEmpty =  true;  
+    }
+    if (selectQuestion.value == 0){
+        selectQuestion.classList.add('is-invalid'); 
+        invalidSelectText.innerText = 'Please select a security question.'; 
+        invalidSelectText.style.display = 'block'; 
+        isEmpty =  true; 
+    }
+    if (selectUserType.value == 0){
+        selectUserType.classList.add('is-invalid'); 
+        invalidRoleText.innerText = "Please select a user role."; 
+        invalidRoleText.style.display = 'block'; 
+        isEmpty =  true;
+    }
+    if (selectUserType.value == 0){
+        selectUserType.classList.add('is-invalid'); 
+        invalidRoleText.innerText = "Please select a user role."; 
+        invalidRoleText.style.display = 'block'; 
+        isEmpty =  true;
+    }
+    if (secAnswer.value == 0){
+        secAnswer.classList.add('is-invalid'); 
+        invalidSecAnswerText.innerText = "Please enter an answer."; 
+        invalidSecAnswerText.style.display = 'block'; 
+        isEmpty =  true;
+    }
+    return isEmpty;
+}
+
+function validatePassword(){
+    if (passwordInput.value != rePassword.value)
+    {
+        passwordInput.classList.add('is-invalid'); 
+        invalidPasswordText.innerText = "Passwords do not match";
+        invalidPasswordText.style.display = 'block'; 
+        rePassword.classList.add('is-invalid'); 
+        invalidRePassword.innerText = "Passwords do not match";
+        invalidRePassword.style.display = 'block'; 
+        return true;  
+    }
+
+    //"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+
+    const regex = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/);
+    console.log(passwordInput.value);
+    if (!regex.test(passwordInput.value)){
+        passwordInput.classList.add('is-invalid'); 
+        invalidPasswordText.innerText = "Passwords must be atleast 8 characters,atleast one letter, one number, and one special character"
+        invalidPasswordText.style.display = 'block'; 
+        rePassword.classList.add('is-invalid'); 
+        invalidRePassword.innerText = "Passwords must be atleast 8 characters,atleast one letter, one number, and one special character";
+        invalidRePassword.style.display = 'block'; 
+        return true; 
+    }
+
+    return false; 
 }
 
 addUserButton.addEventListener('click',async () => {
 
-    if (idInput.value === '' || fnameInput === '' || lnameInput === '' || select.value == 0)
-    {
-        handleEmptyFields(); 
-        return; 
-    }
+    if (handleEmptyFields() || validatePassword())
+        return;
 
     let id = idInput.value; 
     let fname = fnameInput.value; 
     let lname = lnameInput.value;
-    let role = '' 
+    let password = passwordInput.value; 
+    let secQ = selectQuestion.value;
+    let secA = secAnswer.value; 
+    let role = ''; 
     
-    if (select.value == 1)
+    if (selectUserType.value == 1)
         role = 'Operator'; 
-    else if (select.value == 2)
+    else if (selectUserType.value == 2)
         role = 'Leader'; 
     else
         role = 'Admin'; 
 
-    data = {id,fname,lname,role};
-    
-    console.log(data)
+
+    data = {id,fname,lname,role,password,role,secQ,secA};
+    console.log(data);
+
+
 
     let options = {
         method: 'POST',
@@ -260,13 +357,10 @@ addUserButton.addEventListener('click',async () => {
     if (!successfulAdd.ok){
         idInput.classList.add('is-invalid'); 
         invalidIdText.innerText = "User already exists."
+        invalidIdText.style.display = "block";
         return; 
     }
 
-    
-
-    let initToast = new bootstrap.Toast(toast); 
-    initToast.show(); 
-
+    window.location.reload();
 
 })

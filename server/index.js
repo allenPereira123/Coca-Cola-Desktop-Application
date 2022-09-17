@@ -67,7 +67,7 @@ async function encrypt (password,res){
     return hashedPassword;
 }
 catch{
-    res.status(500).send('Bcrypt failed');
+    return res.status(500).send('Bcrypt failed');
 }
 }
 
@@ -88,18 +88,22 @@ app_.delete('/deleteUser/:id', (req,res) => {
 
 
 // adds user when admin is creating accounts
-app_.post('/addUser',(req,res) => {
-  let {id,fname,lname,role} = req.body;   
-  let sql = `INSERT INTO Employees(id,fname,lname,role) 
-            values (?,?,?,?)`;
+app_.post('/addUser',async (req,res) => {
+  let {id,fname,lname,role,secQ,secA,password} = req.body;
+  let hashedPassword = await encrypt(password,res); 
+  let hashedSecurityAnswer = await encrypt(secA,res);
+  let sql = `INSERT INTO Employees(id,password,fname,lname,security_answer,role,security_question) 
+            values (?,?,?,?,?,?,?)`;
   
-  db.run(sql,[id,fname,lname,role], (err,results) => {
+  db.run(sql,[id,hashedPassword,fname,lname,hashedSecurityAnswer,role,secQ], (err,result) => {
       if (err){
         return res.status(500).send(err.message); 
       }
-
+      else{
         return res.status(200).send('added user');
+      }
   })
+
 })
 
 // test 
