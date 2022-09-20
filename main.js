@@ -8,8 +8,8 @@ var win;
 
 const createWindow = () => {
     win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 1000,
     webPreferences: {
      // preload: path.join(__dirname, 'preload.js'),
       nodeIntegration:true,
@@ -17,7 +17,8 @@ const createWindow = () => {
     }
   })
 
-  win.loadFile('views/signIn.html')
+  win.loadFile('views/signIn.html');
+  //win.setMenuBarVisibility(false);
 }
 
 

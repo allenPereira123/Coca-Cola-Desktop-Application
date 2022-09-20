@@ -115,13 +115,12 @@ app_.delete('/deleteUser/:id', (req,res) => {
 
 // adds user when admin is creating accounts
 app_.post('/addUser',async (req,res) => {
-  let {id,fname,lname,role,secQ,secA,password} = req.body;
+  let {id,fname,lname,role,password} = req.body;
   let hashedPassword = await encrypt(password,res); 
-  let hashedSecurityAnswer = await encrypt(secA,res);
-  let sql = `INSERT INTO Employees(id,password,fname,lname,security_answer,role,security_question) 
-            values (?,?,?,?,?,?,?)`;
+  let sql = `INSERT INTO Employees(id,password,fname,lname,role) 
+            values (?,?,?,?,?)`;
   
-  db.run(sql,[id,hashedPassword,fname,lname,hashedSecurityAnswer,role,secQ], (err,result) => {
+  db.run(sql,[id,hashedPassword,fname,lname,role], (err,result) => {
       if (err){
         return res.status(500).send(err.message); 
       }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel = "stylesheet" href ='../css/styles.css'>
 </head>
-<body>
+<body class = 'bg-light'>
 
     <!-- Modal -->
 <div class="modal fade" id="viewUserModal" tabindex="-1" role="dialog" aria-labelledby="viewUserModalLabel" aria-hidden="true">
@@ -138,27 +138,57 @@
     </div>
   </div>
 
-
-  <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModelLabel" aria-hidden="true">
+  <div class="modal" id = "resetPasswordModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addUserModalTitle">Add User</h5>
+          <h5 class="modal-title">Reset Password</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true"></span>
           </button>
         </div>
-    <div class="modal-body">
-        <div class="form-wrapper">
-            <div class="toast align-items-center ms-3 border-success border border-2 mb-3" id = "toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-                <div class="d-flex align-items-center">
-                    <svg width="35" zoomAndPan="magnify" viewBox="0 0 30 30.000001" height="35" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="id1"><path d="M 2.328125 4.222656 L 27.734375 4.222656 L 27.734375 24.542969 L 2.328125 24.542969 Z M 2.328125 4.222656 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#id1)"><path fill="rgb(13.729858%, 12.159729%, 12.548828%)" d="M 27.5 7.53125 L 24.464844 4.542969 C 24.15625 4.238281 23.65625 4.238281 23.347656 4.542969 L 11.035156 16.667969 L 6.824219 12.523438 C 6.527344 12.230469 6 12.230469 5.703125 12.523438 L 2.640625 15.539062 C 2.332031 15.84375 2.332031 16.335938 2.640625 16.640625 L 10.445312 24.324219 C 10.59375 24.472656 10.796875 24.554688 11.007812 24.554688 C 11.214844 24.554688 11.417969 24.472656 11.566406 24.324219 L 27.5 8.632812 C 27.648438 8.488281 27.734375 8.289062 27.734375 8.082031 C 27.734375 7.875 27.648438 7.679688 27.5 7.53125 Z M 27.5 7.53125 " fill-opacity="1" fill-rule="nonzero"/></g></svg>
-                  <div class="toast-body">
-                    Employee successfully added.
-                 </div>
-                  <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <div class="modal-body">
+            <div class="card sign-in-form m-3">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class = 'form-label input-color bold' id = ''>Enter Password</div>
+                        <input type="password" class="form-control" id="modalPasswordInput" placeholder = "Enter Password"> 
+                        <div class="invalid-feedback" id = "invalidModalPassword"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reenterModalPassword" class="form-label input-color bold">Confirm Password</label>
+                        <input type="password" class="form-control " id="modalRePasswordInput" placeholder = "Enter Password"> 
+                        <div class="invalid-feedback" id = "invalidReModalPassword"></div>
+                    </div>
+                    
                 </div>
             </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id = "resetPasswordModalButton" type="button" class="btn btn-primary">Reset Password</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="container modal-header d-flex flex-column">
+            <div class="row w-100 align-items-center justify-content-content-between">
+                <h5 class="col-10" id="addUserModalTitle">Add User</h5>
+                <button type="col-2 button d-flex justify-content-end" class="btn-close col" data-bs-dismiss="modal" id = "close-deleteModal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="row">
+                <strong id = "errorAddingUserText" class = "col text-center">Error adding user.</strong>
+            </div>
+        </div>
+    <div class="modal-body d-flex justify-content-center">
+        <div class="form-wrapper">
             <div class="card sign-in-form m-3">
                 <div class="card-body">
                     <div class="mb-3">
@@ -196,23 +226,7 @@
                         <div class = 'form-label input-color bold' id = 'RePasswordLabel'>Re-Enter Password</div>
                         <input type="password" class="form-control" id="re-enter" placeholder = "Enter Password"> 
                         <div class="invalid-feedback" id = "invalidRePassword"></div>
-                    </div>
-                    <div class = "mb-3">
-                        <label for="securityQuestion" class="form-label input-color bold">Security Question</label>
-                        <select id = "selectQuestion" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                            <option selected value = "0">Select Security Question</option>
-                            <option value="1">What is your mother's maiden name?</option>
-                            <option value="2">What elementary school did you attend?</option>
-                            <option value="3">What is the name of the town/city you were born in?</option>
-                        </select>
-                        <div class = "invalid-feedback" id = "invalidSelectText"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="secAnswer" class="form-label input-color bold">Security Answer</label>
-                        <input type="text" class="form-control" id="secAnswer" placeholder = "Enter answer.">
-                        <div class="invalid-feedback" id = "invalidSecAnswerText"></div>
-                    </div>     
-
+                    </div> 
                 </div>
             </div>
         </div>
@@ -242,10 +256,8 @@
     <div class="col-3 d-flex justify-content-center" id = "coca-cola-logo">CocaCola
     </div>
     <div class="col-3 d-flex justify-content-center navbar-brand bold" id = "greeting">
-        Hello, Allec Pereira
     </div>
     <div class="col-3 d-flex justify-content-center bold" id = "userType">
-        User Type : Operator
     </div>
     <div class="col-2 d-flex justify-content-center" id = "logout">
         <form action = "signIn.html">
@@ -254,7 +266,7 @@
     </div>
 </div>
 
-    <div class="container-fluid h-100 d-flex flex-column align-items-center justify-content-center bg-light">
+    <div class="container-fluid h-100 d-flex flex-column align-items-center bg-light m-5">
             <div class="row mb-0">
                 <div class="col">    
                     <div class="card w-100">
@@ -267,6 +279,7 @@
                                         <th scope="col">First Name</th>
                                         <th scope = "col">Last Name</th>
                                         <th scope = "col">User Type</th>
+                                        <th scope = "col" colspan = "3">Account Managment</th>
                                     </tr>
                                     </thead>
                                         <tbody id = "tableBody">

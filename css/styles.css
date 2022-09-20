@@ -56,6 +56,11 @@ body{
     font-size:large;
 }
 
+#errorAddingUserText{
+    display:none; 
+    color:red;
+}
+
 a:link {color: black;}      /* unvisited link */
 a:visited {color: black;}   /* visited link */
 a:hover {color: black;}     /* mouse over link */

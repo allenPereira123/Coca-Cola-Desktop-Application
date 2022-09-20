@@ -24,7 +24,7 @@ idInput.addEventListener('input', () => {
 function setInvalid(){
     invalidPasswordText.style.display = 'block';
     invalidPasswordText.innerText = 'Invalid Password';
-
+    passwordInput.classList.add('is-invalid');
 }
 
 function checkEmptyFields(){
