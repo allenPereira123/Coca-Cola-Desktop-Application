@@ -13,6 +13,10 @@ body{
     display:none;
 }
 
+#header{
+    height:10vh;
+}
+
 .bold{
     font-weight:bold;
 }
@@ -25,7 +29,7 @@ body{
 }
 
 .table-wrapper {
-    max-height: 52vh;
+    max-height:60vh;
     overflow: auto;
     display:inline-block;
   }
@@ -40,31 +44,46 @@ body{
     font-size:larger;
 }
 
-#coca-cola-logo{
-    font-family:coca-cola;
-    color:red;
-    font-size:3.5vw;
-}
-#title{
-    font-size:larger;
+.vw-75{
+    width:75vw;
 }
 
-#greeting{
-    font-size:large;
+#coca-cola-logo{
+    font-family:coca-cola;
+    color:white;
+    font-size:8vh;
 }
-#userType{
-    font-size:large;
+
+#manageUsers{
+    width:49vw;
 }
+
+#panelLabel{
+
+}
+
+#adminPanel{
+    background-color: #E8E8E8;
+}
+
+#title{
+    font-size:1.3vw;;
+}
+
 
 #errorAddingUserText{
     display:none; 
     color:red;
 }
 
+html {
+    overflow-y: scroll; 
+  }
+
 a:link {color: black;}      /* unvisited link */
-a:visited {color: black;}   /* visited link */
-a:hover {color: black;}     /* mouse over link */
-a:active {color: black;}
+a:visited {color: white;}   /* visited link */
+a:hover {color: white;}     /* mouse over link */
+a:active {color: white;}
 
 #forgotPasswordLink:hover{
     color: #0000EE;

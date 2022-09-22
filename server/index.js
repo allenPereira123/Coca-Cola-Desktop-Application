@@ -97,7 +97,7 @@ catch{
 }
 }
 
-//deletes user (admin cannot be deleted)
+//deletes user
 app_.delete('/deleteUser/:id', (req,res) => {
   
   let sql = `DELETE FROM Employees WHERE id = ?`;
@@ -105,7 +105,7 @@ app_.delete('/deleteUser/:id', (req,res) => {
   
   db.run(sql,id, (err,results) => {
       if (err){
-        res.status(500).send(err); 
+        return res.status(500).send(err); 
       }
 
         return res.status(200).send(results);
@@ -140,29 +140,7 @@ app_.post('/test', async (req,res) => {
 
 })
 
-// checks if security answer is correct
-app_.put('/checkSecurityAnswer',(req,res) => {
-  let {id,securityAnswer} = req.body;  
-  
-  let sql = `SELECT Employees.security_answer FROM Employees WHERE ID = ?`;
-  
-  db.get(sql,[id],async (err,answer) => { 
-    
-    if (err){
-        return res.status(500).send('Error retrieving information'); 
-    }
-
-    if (answer){
-        
-        return await decrypt(securityAnswer,answer.security_answer,res);
-    }
-   
-    return res.status(404).send('user not found')
-  })
-})
-
-
-// handles login after user has created password
+// handles login 
 app_.post('/login',(req,res) => {
   let {id,password} = req.body;  
   let sql = 'SELECT * FROM Employees WHERE ID = ?';
@@ -181,7 +159,7 @@ app_.post('/login',(req,res) => {
   })
 })
 
-// sets password of user after initial sign in 
+// resets-password
 app_.put('/setPassword',async (req,res) => {
     let {id,password}= req.body; 
     let hashedPassword = await encrypt(password,res);
@@ -198,33 +176,14 @@ app_.put('/setPassword',async (req,res) => {
     
 })
 
-// sets security answer question
-app_.put('/setSecurityAnswer',async (req,res) => {
-  let {id,securityQuestion,securityAnswer}= req.body; 
-  let hashedSecAnswer = await encrypt(securityAnswer,res);
-  let sql = `UPDATE Employees SET
-              security_answer = ?,
-              security_question = ?
-              WHERE id = ?`
-              
-  db.run(sql,[hashedSecAnswer,securityQuestion,id], (err) => {
-
-    if (err){
-      return res.status(500).send(err);
-    }
-
-    return res.sendStatus(204);
-  })
-  
-})
 
 // updates user progress
 // user must be signed in 
 app_.put('/updateUserProgress',async (req,res) => {
   let {sid,progress}= req.body; 
   let id = global.id
-  let sql = `UPDATE UserProgress SET ${sid} = ${progress} WHERE id = 9876`
-  db.run(sql,[], (err) => {
+  let sql = `UPDATE UserProgress SET ${sid} = ${progress} WHERE id = ?`
+  db.run(sql,[id], (err) => {
 
     if (err){
       return res.status(500).send(err);
@@ -254,23 +213,6 @@ app_.get('/getAllUsers',(req,res) => {
   })
 });
 
-// returns all users of groups that belong to leader/admin group
-app_.get('/getGroupMembers/:id',(req,res) => {
-  let sql = `SELECT UserProgress.*, Employees.fname, Employees.lname, Groups.group_name
-            FROM UserProgress,GroupMembers,Groups,Employees
-            WHERE UserProgress.id = Employees.id AND Groups.group_id = GroupMembers.group_id AND Employees.id = GroupMembers.member_id AND Groups.creater_id = ?`;
-
-  let groupCreaterId = req.params.id;
-
-  db.all(sql,[groupCreaterId],(err,users) => { 
-    
-      if (err){
-          return res.status(500).send(err); 
-      }
-
-      return res.status(200).send(users);
-  })
-});
 
 // gets user progress
 app_.get('/getUserProgress/:id',(req,res) => {

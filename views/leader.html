@@ -13,33 +13,33 @@
 <body class = "bg-light">
 
 
-    <div class="row w-100 p-0 d-flex align-items-center header">
-        <div class="col-2 d-flex justify-content-center" id = "coca-cola-logo">CocaCola
+    <div class="container-fluid h-100 w-100 p-0 m-0">
+        <div class="row d-flex flex-row w-100 bg-danger align-items-center m-0" id = "header">
+            <div class="col-2 d-flex justify-content-center" id = "coca-cola-logo">CocaCola
+            </div>
+            <div class="col-3 d-flex justify-content-center navbar-brand bold text-white" id = "greeting">
+     
+            </div>
+            <div class="col-3 d-flex justify-content-center text-white bold" id = "userType"> 
+            </div>
+            <div class="col-2 d-flex justify-content-center" id = "logout">
+                <form action = "viewUsers.html">
+                    <button class = "btn btn-dark bold">View Users</button>
+                </form>
+            </div>
+            <div class="col-2 d-flex justify-content-center" id = "logout">
+                <form action = "signIn.html">
+                    <button class = "btn btn-danger border border-white bold">Logout</button>
+                </form>
+            </div>
         </div>
-        <div class="col-3 d-flex justify-content-center navbar-brand bold" id = "greeting">
-            Hello, Allec Pereira
-        </div>
-        <div class="col-3 d-flex justify-content-center bold" id = "userType">
-            User Type : Operator
-        </div>
-        <div class="col-2 d-flex justify-content-center" id = "logout">
-            <form action = "viewUsers.html">
-                <button class = "btn btn-dark">View Users</button>
-            </form>
-        </div>
-        <div class="col-2 d-flex justify-content-center" id = "logout">
-            <form action = "signIn.html">
-                <button class = "btn btn-danger">Logout</button>
-            </form>
-        </div>
-    </div>
 
-    <div class="container-fluid h-100 d-flex flex-column align-items-center justify-content-center">
-        
-            <div class="row mb-0">
-                <div class="col">    
-                    <div class="card w-100">
-                        <div class="card-header bold text-center" id = "operator-header">Training Log</div>
+        <div class="row justify-content-center">
+            <div class="col col-9 d-flex flex-column align-items-center p-0 bg-light">
+                <div class = "col-12 bold h5 m-0" id = "adminPanel">View Progress</div>
+                <div class = "col d-flex flex-column">
+                    <div class="card">
+                        <div class="card-header bold text-center h5">Progress</div>
                         <div class="table-wrapper">
                                 <table class="table table-bordered overflow-auto table-striped">
                                     <thead>
@@ -48,95 +48,89 @@
                                         <th scope="col">COMPLETION</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">Product feed</th>
-                                            <td id = "product-feed">Complete</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Blank Magazine</th>
-                                            <td id = "blank-magazine">Incomplete</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Collating System</th>
-                                            <td id = "collating-system">Completed</td>
-                                        </tr>
-                                        <tr >
-                                            <th scope="row">Blank Suction</th>
-                                            <td id = "blank_suction">Completed</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Gluing</th>
-                                            <td id = "gluing">Completed</td>
-                                        </tr>
-                                        <tr >
-                                            <th scope="row">Film Wrap</th>
-                                            <td id = "film-wrap">Completed</td>
-                                        </tr>
-                                        <tr >
-                                        <tr>
-                                            <th scope="row">HMI</th>
-                                            <td id = "hmi">Completed</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Blank Feed</th>
-                                            <td id = "blank-feed">Completed</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Folding</th>
-                                            <td id = "folding">Completed</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Scenario 1</th>
-                                            <td>
-                                                <div class="progress justify-content-space-between">
-                                                    <div  id = "s1-progress-bar"class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                                    </div>
-                                                </div>
-                                                <div id = "s1-progress-percentage" class="text-center">100%</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Scenario 2</th>
-                                                <td>   
-                                                    <div class="progress justify-content-space-between">
-                                                        <div id = "s2-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                        <tbody>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">Product feed</th>
+                                                    <td id = "product-feed">Complete</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Blank Magazine</th>
+                                                    <td id = "blank-magazine">Incomplete</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Collating System</th>
+                                                    <td id = "collating-system">Completed</td>
+                                                </tr>
+                                                <tr >
+                                                    <th scope="row">Blank Suction</th>
+                                                    <td id = "blank_suction">Completed</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Gluing</th>
+                                                    <td id = "gluing">Completed</td>
+                                                </tr>
+                                                <tr >
+                                                    <th scope="row">Film Wrap</th>
+                                                    <td id = "film-wrap">Completed</td>
+                                                </tr>
+                                                <tr >
+                                                <tr>
+                                                    <th scope="row">HMI</th>
+                                                    <td id = "hmi">Completed</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Blank Feed</th>
+                                                    <td id = "blank-feed">Completed</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Folding</th>
+                                                    <td id = "folding">Completed</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Scenario 1</th>
+                                                    <td>
+                                                        <div class="progress justify-content-space-between">
+                                                            <div  id = "s1-progress-bar"class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div id = "s2-progress-percentage" class = "text-center">100%</div>
-                                                </td>                                            
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Scenario 3</th>
-                                            <td>
-                                                <div class="progress justify-content-space-between">
-                                                    <div id = "s3-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                                    </div>
-                                                </div>
-                                                <div  id = "s3-progress-percentage"class="text-center">100%</div>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
+                                                        <div id = "s1-progress-percentage" class="text-center">100%</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Scenario 2</th>
+                                                        <td>   
+                                                            <div class="progress justify-content-space-between">
+                                                                <div id = "s2-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                                                </div>
+                                                            </div>
+                                                            <div id = "s2-progress-percentage" class = "text-center">100%</div>
+                                                        </td>                                            
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Scenario 3</th>
+                                                    <td>
+                                                        <div class="progress justify-content-space-between">
+                                                            <div id = "s3-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                                            </div>
+                                                        </div>
+                                                        <div  id = "s3-progress-percentage"class="text-center">100%</div>
+                                                    </td>
+                                                </tr>
+                
+                                            </tbody>
+                                        </tbody>
                                 </table>
-                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col d-flex justify-content-center m-2">
+                        <button class="btn btn-danger m-2" id = "launch-button" data-bs-toggle="modal" data-bs-target="#addUserModal">Launch simulation</button>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <div class="btn btn-danger mb-5" id = "launch-button">Launch VR Simulation</div>
-                </div>
-            </div>
-
-            
+            </div>   
+        </div>
     </div>
-
-       
- </div>
-
-
     <script src = '../js/bootstrap.min.js'></script>
     <script src = '../js/admin.js'></script>
 

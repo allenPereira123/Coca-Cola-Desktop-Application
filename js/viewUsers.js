@@ -116,7 +116,7 @@ async function loadData(){
     console.log(result);
 
     greeting.innerText = `Hello, ${result.fname} ${result.lname}`; 
-    userType.innerText = `User role: ${result.role}`;
+    //userType.innerText = `User role: ${result.role}`;
 
     let usersResponse = await fetch('http://localhost:3001/getAllUsers'); 
 

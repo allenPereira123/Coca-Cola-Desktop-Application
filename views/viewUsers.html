@@ -114,7 +114,7 @@
 
 
 
-
+<!--
   <div class="row w-100 p-0 d-flex align-items-center header bg-light">
 
     <div class="col-1 d-flex justify-content-center" id = "back-button">
@@ -139,18 +139,56 @@
         </form>
     </div>
 </div>
+-->
+<div class="container-fluid h-100 w-100 p-0 m-0">
 
-    <div class="container-fluid h-100 d-flex flex-column align-items-center justify-content-center bg-light">
-        <div class="toast align-items-center ms-3 border-success border border-2 mb-3" id = "toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-            <div class="d-flex align-items-center">
-                <svg width="35" zoomAndPan="magnify" viewBox="0 0 30 30.000001" height="35" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="id1"><path d="M 2.328125 4.222656 L 27.734375 4.222656 L 27.734375 24.542969 L 2.328125 24.542969 Z M 2.328125 4.222656 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#id1)"><path fill="rgb(13.729858%, 12.159729%, 12.548828%)" d="M 27.5 7.53125 L 24.464844 4.542969 C 24.15625 4.238281 23.65625 4.238281 23.347656 4.542969 L 11.035156 16.667969 L 6.824219 12.523438 C 6.527344 12.230469 6 12.230469 5.703125 12.523438 L 2.640625 15.539062 C 2.332031 15.84375 2.332031 16.335938 2.640625 16.640625 L 10.445312 24.324219 C 10.59375 24.472656 10.796875 24.554688 11.007812 24.554688 C 11.214844 24.554688 11.417969 24.472656 11.566406 24.324219 L 27.5 8.632812 C 27.648438 8.488281 27.734375 8.289062 27.734375 8.082031 C 27.734375 7.875 27.648438 7.679688 27.5 7.53125 Z M 27.5 7.53125 " fill-opacity="1" fill-rule="nonzero"/></g></svg>
-              <div class="toast-body">
-                Employee successfully added.
-             </div>
-              <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <div class="row d-flex flex-row w-100 bg-danger align-items-center m-0" id = "header">
+            <a href = "leader.html" class = "col-1">
+                <div class="btn p-0">
+                <svg width="5vw" height="5vh" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="white" d="M48 256c0 114.87 93.13 208 208 208s208-93.13 208-208S370.87 48 256 48S48 141.13 48 256Zm212.65-91.36a16 16 0 0 1 .09 22.63L208.42 240H342a16 16 0 0 1 0 32H208.42l52.32 52.73A16 16 0 1 1 238 347.27l-79.39-80a16 16 0 0 1 0-22.54l79.39-80a16 16 0 0 1 22.65-.09Z"/></svg>
+                </div>
+            </a>
+            <div class="col-2 mb-1" id = "coca-cola-logo">
+                CocaCola
+            </div>
+            <div class="col-2  mb-1 text-white bold" id = "greeting">
+
+            </div>
+            <div class="col-7 mb-1 p-0 d-flex flex-row-reverse">
+                <form action = "signIn.html">
+                    <button class = " btn btn-danger border border-white bold m-2">Logout</button>
+                </form>
             </div>
         </div>
-        
+
+        <div class="row justify-content-center">
+            <div class="col col-9 d-flex flex-column align-items-center p-0 bg-light">
+                <div class = "col-12 bold h5 m-0" id = "adminPanel">View users</div>
+                <div class = "col d-flex flex-column">
+                    <div class="card">
+                        <div class="card-header bold text-center h5">Users</div>
+                        <div class="">
+                                <table class="table table-bordered overflow-auto table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope = "col">Last Name</th>
+                                        <th scope = "col">User Type</th>
+                                    </tr>
+                                    </thead>
+                                            <tbody id = "tableBody">
+    
+                                            </tbody>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+        </div>
+</div>
+
+<!--
             <div class="row mb-0">
                 <div class="col">    
                     <div class="card w-100">
@@ -173,6 +211,7 @@
                     </div>
                 </div>
             </div>
+-->
 
             
     </div>
