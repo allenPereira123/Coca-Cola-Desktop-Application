@@ -23,7 +23,7 @@ idInput.addEventListener('input', () => {
 
 function setInvalid(){
     invalidPasswordText.style.display = 'block';
-    invalidPasswordText.innerText = 'Invalid Password';
+    invalidPasswordText.innerText = 'Invalid Password.';
     passwordInput.classList.add('is-invalid');
 }
 
@@ -33,7 +33,7 @@ function checkEmptyFields(){
     if (idInput.value === '')
     {
         idInput.classList.add('is-invalid'); 
-        invalidIdtext.innerText = 'Please enter an employee id'; 
+        invalidIdtext.innerText = 'Please enter an employee id.'; 
         idInput.style.display = 'block';
         isEmpty = true; 
     }
@@ -41,7 +41,7 @@ function checkEmptyFields(){
     if (passwordInput.value === '')
     {
         passwordInput.classList.add('is-invalid'); 
-        invalidPasswordText.innerText = 'Please enter a password'; 
+        invalidPasswordText.innerText = 'Please enter a password.'; 
         invalidPasswordText.style.display = 'block';
         isEmpty = true; 
     }

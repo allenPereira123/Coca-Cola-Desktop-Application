@@ -50,7 +50,7 @@ app_.get('/getSignedInUserInfo',(req,res) => {
 
 // gets user info only (no progress) 
 app_.get('/getSignedInId',(req,res) => {
-  let sql = 'SELECT * FROM Employees WHERE ID = ?';
+  let sql = 'SELECT id,fname,lname,role FROM Employees WHERE ID = ?';
   let userId = global.id 
 
   db.get(sql,[userId],(err,user) => { // err is null if no error 
@@ -159,7 +159,7 @@ app_.post('/login',(req,res) => {
   })
 })
 
-// resets-password
+// resets password
 app_.put('/setPassword',async (req,res) => {
     let {id,password}= req.body; 
     let hashedPassword = await encrypt(password,res);

@@ -5,8 +5,7 @@
 }
 
 body{
-    height:100vh;
-    
+    height:100vh;    
 }
 
 .alert{
@@ -29,7 +28,7 @@ body{
 }
 
 .table-wrapper {
-    max-height:60vh;
+    max-height:50vh;
     overflow: auto;
     display:inline-block;
   }
@@ -48,10 +47,16 @@ body{
     width:75vw;
 }
 
+#sign-in-logo{
+    font-family:coca-cola;
+    color:red;
+    font-size:3vw;
+}
+
 #coca-cola-logo{
     font-family:coca-cola;
     color:white;
-    font-size:8vh;
+    font-size:3vw;
 }
 
 #manageUsers{
@@ -76,8 +81,9 @@ body{
     color:red;
 }
 
-html {
-    overflow-y: scroll; 
+html{
+    width:100vw;
+    height:100vh; 
   }
 
 a:link {color: black;}      /* unvisited link */

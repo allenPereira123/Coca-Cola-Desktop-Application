@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>manageUsers</title>
+    <title>CocaCola VR Desktop App</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel = "stylesheet" href ='../css/styles.css'>
 </head>
@@ -24,7 +24,7 @@
         <div class="modal-body">
           
             <div class="table-wrapper d-flex justify-content-center">
-                <table class="table table-bordered overflow-auto table-striped">
+                <table class="table table-bordered overflow-auto">
                     <thead>
                     <tr>
                         <th scope="col">SCENARIO/SECTION</th>
@@ -238,29 +238,43 @@
     </div>
   </div>
 
-  <div class="container-fluid h-100 w-100 p-0 m-0">
-        <div class="row d-flex flex-row w-100 bg-danger align-items-center m-0" id = "header">
-            <a href = "admin.html" class = "col-1">
+
+<!--
+
+
+
+            <a href = "admin.html" class = "col-2 d-flex justify-content-center">
                 <div class="btn p-0">
                 <svg width="5vw" height="5vh" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="white" d="M48 256c0 114.87 93.13 208 208 208s208-93.13 208-208S370.87 48 256 48S48 141.13 48 256Zm212.65-91.36a16 16 0 0 1 .09 22.63L208.42 240H342a16 16 0 0 1 0 32H208.42l52.32 52.73A16 16 0 1 1 238 347.27l-79.39-80a16 16 0 0 1 0-22.54l79.39-80a16 16 0 0 1 22.65-.09Z"/></svg>
                 </div>
             </a>
-            <div class="col-2 mb-1" id = "coca-cola-logo">
-                CocaCola
+-->
+
+
+  <div class="container-fluid p-0 m-0">
+        
+        <div class="row d-flex flex-row w-100 bg-danger align-items-center m-0" id = "header">
+            <a href = "admin.html" class = "col-2 d-flex justify-content-center">
+                <div class="btn p-0">
+                <svg width="4vw" height="4vh" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="white" d="M48 256c0 114.87 93.13 208 208 208s208-93.13 208-208S370.87 48 256 48S48 141.13 48 256Zm212.65-91.36a16 16 0 0 1 .09 22.63L208.42 240H342a16 16 0 0 1 0 32H208.42l52.32 52.73A16 16 0 1 1 238 347.27l-79.39-80a16 16 0 0 1 0-22.54l79.39-80a16 16 0 0 1 22.65-.09Z"/></svg>
+                </div>
+            </a>
+            <div class="col-2 d-flex justify-content-center" id = "coca-cola-logo">CocaCola
             </div>
-            <div class="col-2  mb-1 text-white bold" id = "greeting">
+            <div class="col-3 d-flex justify-content-center navbar-brand bold text-white" id = "greeting">
 
             </div>
-            <div class="col-7 mb-1 p-0 d-flex flex-row-reverse">
-                 <form action = "signIn.html">
-            <button class = " btn btn-danger border border-white bold m-2">Logout</button>
-        </form>
+            <div class="col-3 d-flex justify-content-center text-white bold" id = "userType"> 
+            </div>
+            <div class="col-2 d-flex justify-content-center" id = "logout">
+                <form action = "signIn.html">
+                    <button class = "btn btn-danger border border-white bold">Logout</button>
+                </form>
             </div>
         </div>
 
         <div class="row justify-content-center">
-            <div class="col col-9 d-flex flex-column align-items-center p-0 bg-light">
-                <div class = "col-12 bold h5 m-0" id = "adminPanel">Admin Panel</div>
+            <div class="col col-9 d-flex flex-column align-items-center p-0 m-5">
                 <div class = "col d-flex flex-column">
                     <div class="card">
                         <div class="card-header bold text-center h5">Users</div>

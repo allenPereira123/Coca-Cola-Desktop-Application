@@ -8,17 +8,15 @@ var win;
 
 const createWindow = () => {
     win = new BrowserWindow({
-    width: 1000,
-    height: 1000,
     webPreferences: {
      // preload: path.join(__dirname, 'preload.js'),
       nodeIntegration:true,
-      contextIsolation:false
+      contextIsolation:false,
     }
   })
 
   win.loadFile('views/signIn.html');
-  //win.setMenuBarVisibility(false);
+  win.setMenuBarVisibility(false);
 }
 
 

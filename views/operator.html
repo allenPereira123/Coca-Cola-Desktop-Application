@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operator</title>
+    <title>CocaCola VR Desktop App</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel = "stylesheet" href ='../css/styles.css'>
 </head>
@@ -12,28 +12,29 @@
 
     <div class="container-fluid h-100 w-100 p-0 m-0">
         <div class="row d-flex flex-row w-100 bg-danger align-items-center m-0" id = "header">
-            <div class="col-3 d-flex justify-content-center p-0" id = "coca-cola-logo">CocaCola
-            </div>
-            <div class="col-3 d-flex justify-content-center navbar-brand bold text-white" id = "greeting">
-     
-            </div>
-            <div class="col-3 d-flex justify-content-center text-white bold" id = "userType"> 
-            </div>
-            <div class="col-3 d-flex justify-content-end" id = "logout">
-                <form action = "signIn.html">
-                    <button class = "btn btn-danger border border-white bold">Logout</button>
-                </form>
+            <div class="row d-flex flex-row w-100 bg-danger align-items-center m-0" id = "header">
+                <div class="col-3 d-flex justify-content-center" id = "coca-cola-logo">CocaCola
+                </div>
+                <div class="col-3 d-flex justify-content-center navbar-brand bold text-white" id = "greeting">
+                        
+                </div>
+                <div class="col-3 d-flex justify-content-center text-white bold" id = "userType"> 
+                </div>
+                <div class="col-3 d-flex justify-content-center" id = "logout">
+                    <form action = "signIn.html">
+                        <button class = "btn btn-danger border border-white bold">Logout</button>
+                    </form>
+                </div>
             </div>
         </div>
 
         <div class="row justify-content-center">
-            <div class="col col-9 d-flex flex-column align-items-center p-0 bg-light">
-                <div class = "col-12 bold h5 m-0" id = "adminPanel">View Progress</div>
+            <div class="col col-9 d-flex flex-column align-items-center p-0 m-5">
                 <div class = "col d-flex flex-column">
                     <div class="card">
-                        <div class="card-header bold text-center h5">Progress</div>
+                        <div class="card-header bold text-center h5">Training Log</div>
                         <div class="table-wrapper">
-                                <table class="table table-bordered overflow-auto table-striped">
+                                <table class="table table-bordered overflow-auto">
                                     <thead>
                                     <tr>
                                         <th scope="col">SCENARIO/SECTION</th>
@@ -83,7 +84,7 @@
                                                     <th scope="row">Scenario 1</th>
                                                     <td>
                                                         <div class="progress justify-content-space-between">
-                                                            <div  id = "s1-progress-bar"class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                                            <div  id = "s1-progress-bar"class="progress-bar bg-danger" role="progressbar" style="width:0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                                                             </div>
                                                         </div>
                                                         <div id = "s1-progress-percentage" class="text-center">100%</div>
@@ -93,7 +94,7 @@
                                                     <th scope="row">Scenario 2</th>
                                                         <td>   
                                                             <div class="progress justify-content-space-between">
-                                                                <div id = "s2-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                                                <div id = "s2-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width:0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                                                                 </div>
                                                             </div>
                                                             <div id = "s2-progress-percentage" class = "text-center">100%</div>
@@ -103,7 +104,7 @@
                                                     <th scope="row">Scenario 3</th>
                                                     <td>
                                                         <div class="progress justify-content-space-between">
-                                                            <div id = "s3-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width:100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                                            <div id = "s3-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width:0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                                                             </div>
                                                         </div>
                                                         <div  id = "s3-progress-percentage"class="text-center">100%</div>
