@@ -1,3 +1,5 @@
+var child = require('child_process').execFile;
+var executablePath = "C:\\Users\\al511555\\Documents\\Simulator\\Simulator.exe";
 const productFeed = document.getElementById('product-feed');
 const blankMagazine = document.getElementById('blank-magazine');
 const collatingSystem = document.getElementById('collating-system');
@@ -16,6 +18,7 @@ const s3ProgressPercentage = document.getElementById('s3-progress-percentage');
 const greeting = document.getElementById('greeting'); 
 const userType = document.getElementById('userType'); 
 const logout = document.getElementById('logout');
+const launch = document.getElementById('launch-button'); 
 
 async function loadData(){
     
@@ -61,3 +64,14 @@ async function loadData(){
 } 
 
 loadData(); 
+
+launch.addEventListener('click', () => {
+    child(executablePath, function (err, data) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+
+        console.log(data.toString());
+    });
+})
