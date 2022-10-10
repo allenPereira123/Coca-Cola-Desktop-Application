@@ -21,6 +21,9 @@ const logout = document.getElementById('logout');
 const tableBody = document.getElementById('tableBody');
 const viewUserProgress = document.getElementById('viewUserProgress');
 const backButton = document.getElementById('back-button'); 
+const userTypeInput = document.getElementById('userTypeInput'); 
+const searchButton = document.getElementById('search-button');
+const searchInput = document.getElementById('search-input');
 
 
 var users = []; 
@@ -71,9 +74,28 @@ async function handleView(event){
     s3ProgressPercentage.innerText = `${userProgress.s3}%`;
 }
 
-function displayUsers(){
+function displayUsers(userType,filterCriteria){
+    
+    let tempUsers = users.filter((user) => {
+        if (userType != null && userTypeInput.value != 'All' && userTypeInput.value != user.role){
+            return false; 
+        }
+        
+        if (filterCriteria != null && filterCriteria != user.fname && filterCriteria != user.lname && filterCriteria != user.id){
+            return false; 
+        }
+        
 
-    users.forEach((user,index) => {
+        return true; 
+    });
+
+    console.log(tempUsers);
+    
+    while(tableBody.firstChild){
+        tableBody.removeChild(tableBody.firstChild);
+    }
+
+    tempUsers.forEach((user,index) => {
         const tableRow = document.createElement('tr'); 
         const th = document.createElement('th'); 
         th.setAttribute("scope","row");
@@ -129,4 +151,22 @@ async function loadData(){
 
     displayUsers(); 
 }
+
+userTypeInput.addEventListener('change',() => {
+    console.log(userTypeInput.value);
+    displayUsers(userTypeInput.value);
+
+})
+
+searchInput.addEventListener('input',() => {
+    if (searchInput.value === ''){
+        displayUsers(userTypeInput.value); 
+    }
+})
+
+searchButton.addEventListener('click',() => {
+    if (searchInput.value != ''){
+        displayUsers(userTypeInput.value,searchInput.value);
+    }
+})
 

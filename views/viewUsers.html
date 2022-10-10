@@ -140,53 +140,73 @@
     </div>
 </div>
 -->
-<div class="container-fluid h-100 w-100 p-0 m-0">
 
-        <div class="row d-flex flex-row w-100 bg-danger align-items-center m-0" id = "header">
-            <a href = "leader.html" class = "col-2 d-flex justify-content-center">
-                <div class="btn p-0">
-                <svg width="4vw" height="4vh" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="white" d="M48 256c0 114.87 93.13 208 208 208s208-93.13 208-208S370.87 48 256 48S48 141.13 48 256Zm212.65-91.36a16 16 0 0 1 .09 22.63L208.42 240H342a16 16 0 0 1 0 32H208.42l52.32 52.73A16 16 0 1 1 238 347.27l-79.39-80a16 16 0 0 1 0-22.54l79.39-80a16 16 0 0 1 22.65-.09Z"/></svg>
-                </div>
-            </a>
-            <div class="col-2 d-flex justify-content-center" id = "coca-cola-logo">CocaCola
-            </div>
-            <div class="col-3 d-flex justify-content-center navbar-brand bold text-white" id = "greeting">
-
-            </div>
-            <div class="col-3 d-flex justify-content-center text-white bold" id = "userType"> 
-            </div>
-            <div class="col-2 d-flex justify-content-center" id = "logout">
-                <form action = "signIn.html">
-                    <button class = "btn btn-danger border border-white bold">Logout</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col col-9 d-flex flex-column align-items-center p-0 m-5">
-                <div class = "col d-flex flex-column">
-                    <div class="card">
-                        <div class="card-header bold text-center h5">Users</div>
-                        <div class="table-wrapper">
-                                <table class="table table-bordered overflow-auto table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Id</th>
-                                        <th scope="col">First Name</th>
-                                        <th scope = "col">Last Name</th>
-                                        <th scope = "col">User Type</th>
-                                    </tr>
-                                    </thead>
-                                            <tbody id = "tableBody">
+<div class= "bg-danger d-flex justify-content-around align-items-center mb-5">
     
-                                            </tbody>
-                                </table>
+    <a href = "leader.html">
+        <div class="btn p-0">
+        <svg width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="white" d="M48 256c0 114.87 93.13 208 208 208s208-93.13 208-208S370.87 48 256 48S48 141.13 48 256Zm212.65-91.36a16 16 0 0 1 .09 22.63L208.42 240H342a16 16 0 0 1 0 32H208.42l52.32 52.73A16 16 0 1 1 238 347.27l-79.39-80a16 16 0 0 1 0-22.54l79.39-80a16 16 0 0 1 22.65-.09Z"/></svg>
+        </div>
+    </a>
+    
+    <div class = "coca-cola-logo h1 mt-2">
+        Coca-Cola
+    </div>
+    <div id = 'greeting' class = "bold text-white h6"></div>
+    <div id = 'userType' class = "bold text-white h6"></div>
+    <div id = "logout">
+        <form action = "signIn.html">
+            <button class = "btn btn-danger border border-white bold h6">Logout</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="container d-flex flex-column justify-content-center align-items-center">
+    <div class="row">
+            <div class="col">
+                <div class="card-container">
+                    <div class="filter-bar d-flex mb-2">
+                        <select class="form-select form-select-sm me-2 pe-0 ps-1" aria-label=".form-select-sm example" id = "userTypeInput">
+                            <option value = "All" selected>User Type: All</option>
+                            <option value="Admin">User Type: Admin</option>
+                            <option value="Leader">User Type: Leader</option>
+                            <option value="Operator">User Type: Operator</option>
+                          </select>
+                          <div class="input-group">
+                            <input class="form-control border-end-0 border" type="text" id="search-input" placeholder="Filter By ID,First/Last Name">
+                            <span class="input-group-append">
+                                <button class="btn  bg-white border" id = "search-button" type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="currentColor" d="M16.33 5.05A10.95 10.95 0 1 1 5.39 16A11 11 0 0 1 16.33 5.05m0-2.05a13 13 0 1 0 13 13a13 13 0 0 0-13-13Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="currentColor" d="m35 33.29l-7.37-7.42l-1.42 1.41l7.37 7.42A1 1 0 1 0 35 33.29Z" class="clr-i-outline clr-i-outline-path-2 pb-1"/><path fill="none" d="M0 0h36v36H0z"/></svg>
+                                </button>
+                            </span>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-header bold text-center h5">Users</div>
+                            <div class = "d-flex">
+                                
+                            </div>
+                            <div class="table-wrapper">
+                                    <table class="table table-bordered overflow-auto table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col"colspan = "1">Id</th>
+                                            <th scope="col" colspan = "1">First Name</th>
+                                            <th scope = "col" colspan = "1">Last Name</th>
+                                            <th scope = "col" colspan = "1">User Type</th>
+                                            <th scope = "col" colspan = "1">View User</th>
+                                        </tr>
+                                        </thead>
+                                            <tbody id = "tableBody">
+                                                
+                                            </tbody>
+                                    </table>
+                            </div>
+                    </div>
                 </div>
-            </div>   
-        </div>
-</div>
+            </div>
+    </div>
 
 <!--
             <div class="row mb-0">

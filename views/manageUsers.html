@@ -171,68 +171,64 @@
     </div>
   </div>
 
-
-  <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModelLabel" aria-hidden="true">
+<!---->
+<div class="modal" id ="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModelLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="container modal-header d-flex flex-column">
-            <div class="row w-100 align-items-center justify-content-content-between">
-                <h5 class="col-10" id="addUserModalTitle">Add User</h5>
-                <button type="col-2 button d-flex justify-content-end" class="btn-close col" data-bs-dismiss="modal" id = "close-deleteModal" aria-label="Close">
-                    <span aria-hidden="true"></span>
-                </button>
-            </div>
-            <div class="row">
-                <strong id = "errorAddingUserText" class = "col text-center">Error adding user.</strong>
-            </div>
+        <div class="modal-header">
+          <h5 class="modal-title">Add User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
         </div>
-    <div class="modal-body d-flex justify-content-center">
-        <div class="form-wrapper">
-            <div class="card sign-in-form">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <div class = 'form-label input-color bold' id = 'idLabel'>Id</div>
-                        <input type="text" class="form-control" id="idInput" placeholder = "Enter Id"> 
-                        <div class="invalid-feedback" id = "invalidIdText"></div>
+        <div class="modal-body">
+            <strong id = "errorAddingUserText" class = "col text-center">Error adding user.</strong>
+            <div class="form-wrapper ps-1">
+                <div class="card sign-in-form">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class = 'form-label input-color bold' id = 'idLabel'>Id</div>
+                            <input type="text" class="form-control" id="idInput" placeholder = "Enter Id"> 
+                            <div class="invalid-feedback" id = "invalidIdText"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fname" class="form-label input-color bold">First Name</label>
+                            <input type="text" class="form-control " id="fnameInput" placeholder = "Enter First Name"> 
+                            <div class="invalid-feedback" id = "invalidFnameText"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Lastname" class="form-label input-color bold">Last Name</label>
+                            <input type="text" class="form-control" id="lnameInput" placeholder = "Enter Last Name">
+                            <div class="invalid-feedback" id = "invalidLnameText"></div>
+                        </div>
+                        
+                        <div class = "mb-3">
+                            <label for="selectUserType" class="form-label input-color bold">Role</label>
+                            <select id = "selectUserType" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <option selected value = "0">Select User Role</option>
+                                <option value="1">Operator</option>
+                                <option value="2">Leader</option>
+                                <option value="3">Admin</option>
+                            </select>
+                            <div class = "invalid-feedback" id = "invalidRoleText"></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class = 'form-label input-color bold' id = 'idLabel'>Password</div>
+                            <input type="password" class="form-control" id="passwordInput" placeholder = "Enter Password"> 
+                            <div class="invalid-feedback" id = "invalidPassword"></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class = 'form-label input-color bold' id = 'RePasswordLabel'>Re-Enter Password</div>
+                            <input type="password" class="form-control" id="re-enter" placeholder = "Enter Password"> 
+                            <div class="invalid-feedback" id = "invalidRePassword"></div>
+                        </div> 
                     </div>
-                    <div class="mb-3">
-                        <label for="fname" class="form-label input-color bold">First Name</label>
-                        <input type="text" class="form-control " id="fnameInput" placeholder = "Enter First Name"> 
-                        <div class="invalid-feedback" id = "invalidFnameText"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="Lastname" class="form-label input-color bold">Last Name</label>
-                        <input type="text" class="form-control" id="lnameInput" placeholder = "Enter Last Name">
-                        <div class="invalid-feedback" id = "invalidLnameText"></div>
-                    </div>
-                    
-                    <div class = "mb-3">
-                        <label for="selectUserType" class="form-label input-color bold">Role</label>
-                        <select id = "selectUserType" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                            <option selected value = "0">Select User Role</option>
-                            <option value="1">Operator</option>
-                            <option value="2">Leader</option>
-                            <option value="3">Admin</option>
-                        </select>
-                        <div class = "invalid-feedback" id = "invalidRoleText"></div>
-                    </div>
-                    <div class="mb-3">
-                        <div class = 'form-label input-color bold' id = 'idLabel'>Password</div>
-                        <input type="password" class="form-control" id="passwordInput" placeholder = "Enter Password"> 
-                        <div class="invalid-feedback" id = "invalidPassword"></div>
-                    </div>
-                    <div class="mb-3">
-                        <div class = 'form-label input-color bold' id = 'RePasswordLabel'>Re-Enter Password</div>
-                        <input type="password" class="form-control" id="re-enter" placeholder = "Enter Password"> 
-                        <div class="invalid-feedback" id = "invalidRePassword"></div>
-                    </div> 
                 </div>
             </div>
         </div>
-    </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" id = "addUserButton">Add</button>
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" id = "addUserButton">Add</button>
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -242,19 +238,7 @@
 <!--
 
 
-
-            <a href = "admin.html" class = "col-2 d-flex justify-content-center">
-                <div class="btn p-0">
-                <svg width="5vw" height="5vh" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="white" d="M48 256c0 114.87 93.13 208 208 208s208-93.13 208-208S370.87 48 256 48S48 141.13 48 256Zm212.65-91.36a16 16 0 0 1 .09 22.63L208.42 240H342a16 16 0 0 1 0 32H208.42l52.32 52.73A16 16 0 1 1 238 347.27l-79.39-80a16 16 0 0 1 0-22.54l79.39-80a16 16 0 0 1 22.65-.09Z"/></svg>
-                </div>
-            </a>
--->
-
-
-  <div class="container-fluid p-0 m-0">
-        
-        <div class="row d-flex flex-row w-100 bg-danger align-items-center m-0" id = "header">
-            <a href = "admin.html" class = "col-2 d-flex justify-content-center">
+     <a href = "admin.html" class = "col-2 d-flex justify-content-center">
                 <div class="btn p-0">
                 <svg width="4vw" height="4vh" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="white" d="M48 256c0 114.87 93.13 208 208 208s208-93.13 208-208S370.87 48 256 48S48 141.13 48 256Zm212.65-91.36a16 16 0 0 1 .09 22.63L208.42 240H342a16 16 0 0 1 0 32H208.42l52.32 52.73A16 16 0 1 1 238 347.27l-79.39-80a16 16 0 0 1 0-22.54l79.39-80a16 16 0 0 1 22.65-.09Z"/></svg>
                 </div>
@@ -270,38 +254,78 @@
                 <form action = "signIn.html">
                     <button class = "btn btn-danger border border-white bold">Logout</button>
                 </form>
-            </div>
+-->
+<div class= "bg-danger d-flex justify-content-around align-items-center mb-5">
+    
+    <a href = "admin.html">
+        <div class="btn p-0">
+        <svg width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="white" d="M48 256c0 114.87 93.13 208 208 208s208-93.13 208-208S370.87 48 256 48S48 141.13 48 256Zm212.65-91.36a16 16 0 0 1 .09 22.63L208.42 240H342a16 16 0 0 1 0 32H208.42l52.32 52.73A16 16 0 1 1 238 347.27l-79.39-80a16 16 0 0 1 0-22.54l79.39-80a16 16 0 0 1 22.65-.09Z"/></svg>
         </div>
+    </a>
+    
+    <div class = "coca-cola-logo h1 mt-2">
+        Coca-Cola
+    </div>
+    <div id = 'greeting' class = "bold text-white h6"></div>
+    <div id = 'userType' class = "bold text-white h6"></div>
+    <div id = "logout">
+        <form action = "signIn.html">
+            <button class = "btn btn-danger border border-white bold h6">Logout</button>
+        </form>
+    </div>
+</div>
 
-        <div class="row justify-content-center">
-            <div class="col col-9 d-flex flex-column align-items-center p-0 m-5">
-                <div class = "col d-flex flex-column">
-                    <div class="card">
-                        <div class="card-header bold text-center h5">Users</div>
-                        <div class="table-wrapper">
-                                <table class="table table-bordered overflow-auto table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Id</th>
-                                        <th scope="col">First Name</th>
-                                        <th scope = "col">Last Name</th>
-                                        <th scope = "col">User Type</th>
-                                        <th scope = "col" colspan = "3">Account Managment</th>
-                                    </tr>
-                                    </thead>
-                                        <tbody id = "tableBody">
-                                            
-                                        </tbody>
-                                </table>
+  <div class="container d-flex flex-column justify-content-center align-items-center">
+        <div class="row">
+                <div class="col">
+                    <div class="card-container">
+                        <div class="filter-bar d-flex mb-2">
+                            <select class="form-select form-select-sm me-2 pe-0 ps-1" aria-label=".form-select-sm example" id = "userTypeInput">
+                                <option value = "All" selected>User Type: All</option>
+                                <option value="Admin">User Type: Admin</option>
+                                <option value="Leader">User Type: Leader</option>
+                                <option value="Operator">User Type: Operator</option>
+                              </select>
+                              <div class="input-group">
+                                <input class="form-control border-end-0 border" type="text" id="search-input" placeholder="Filter By ID,First/Last Name">
+                                <span class="input-group-append">
+                                    <button class="btn  bg-white border" id = "search-button" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="currentColor" d="M16.33 5.05A10.95 10.95 0 1 1 5.39 16A11 11 0 0 1 16.33 5.05m0-2.05a13 13 0 1 0 13 13a13 13 0 0 0-13-13Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="currentColor" d="m35 33.29l-7.37-7.42l-1.42 1.41l7.37 7.42A1 1 0 1 0 35 33.29Z" class="clr-i-outline clr-i-outline-path-2 pb-1"/><path fill="none" d="M0 0h36v36H0z"/></svg>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col d-flex justify-content-center m-2">
-                        <button class="btn btn-danger m-2" id = "launch-button" data-bs-toggle="modal" data-bs-target="#addUserModal">Add User</div>
+                        <div class="card">
+                            <div class="card-header bold text-center h5">Users</div>
+                                <div class = "d-flex">
+                                    
+                                </div>
+                                <div class="table-wrapper">
+                                        <table class="table table-bordered overflow-auto table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col"colspan = "1">Id</th>
+                                                <th scope="col" colspan = "1">First Name</th>
+                                                <th scope = "col" colspan = "1">Last Name</th>
+                                                <th scope = "col" colspan = "1">User Type</th>
+                                                <th scope = "col" colspan = "3">Account Managment</th>
+                                            </tr>
+                                            </thead>
+                                                <tbody id = "tableBody">
+                                                    
+                                                </tbody>
+                                        </table>
+                                </div>
+                        </div>
                     </div>
                 </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-danger mt-3 mb-0 me-0 ms-0" id = "launch-button" data-bs-toggle="modal" data-bs-target="#addUserModal">Add User</button>
+            </div>
+        </div> 
+</div>
 
     <script src = '../js/bootstrap.min.js'></script>
     <script src = '../js/manageUsers.js'></script>

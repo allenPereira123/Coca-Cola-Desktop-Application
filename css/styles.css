@@ -5,7 +5,9 @@
 }
 
 body{
-    height:100vh;    
+    height:100%;
+    width:100%;
+    min-width: 700px;    
 }
 
 .alert{
@@ -15,7 +17,22 @@ body{
 #header{
     height:10vh;
 }
+#search-button:hover {
+    background-color: red;
+    opacity: 0.6;
+    }
 
+#search-input{
+    border-radius: 0;
+    border-left: black;
+    border:5px;
+    width:50%;
+}
+
+#search-button{
+    border-radius: 0%;
+    border-left:black
+}
 .bold{
     font-weight:bold;
 }
@@ -27,8 +44,23 @@ body{
     margin-top:30px;
 }
 
+.h-90{
+    height:90vh;
+}
+
+.h-85{
+    height:85vh;
+}
+
+.sign-in-icon{
+    position: relative;
+  left:0px;
+  top: 30px;
+  z-index: 1;
+}
+
 .table-wrapper {
-    max-height:50vh;
+    max-height:55vh;
     overflow: auto;
     display:inline-block;
   }
@@ -37,6 +69,7 @@ body{
     max-height: 52vh;
     overflow: auto;
     display:inline-block;
+    width:98%;
   }
 
 #operator-header{
@@ -53,10 +86,14 @@ body{
     font-size:3vw;
 }
 
-#coca-cola-logo{
+.banner{
     font-family:coca-cola;
     color:white;
-    font-size:3vw;
+}
+
+.coca-cola-logo{
+    font-family:coca-cola;
+    color:white;
 }
 
 #manageUsers{

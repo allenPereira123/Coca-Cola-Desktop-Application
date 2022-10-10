@@ -12,21 +12,29 @@
 </head>
 <body>
 
-    <div class= "bg-danger d-flex justify-content-around align-items-center mb-5">
-        <div class = "coca-cola-logo h1 mt-2">
-            Coca-Cola
-        </div>
-        <div id = 'greeting' class = "bold text-white h6"></div>
-        <div id = 'userType' class = "bold text-white h6"></div>
-        <div>
-            <form action = "manageUsers.html">
-                <button class = "btn btn-danger border border-white bold h6">Manage Users</button>
-            </form>
-        </div>
-        <div id = "logout">
-            <form action = "signIn.html">
-                <button class = "btn btn-danger border border-white bold h6">Logout</button>
-            </form>
+    <div class="container-fluid mb-5">
+        <div class="row bg-danger d-flex justify-content-around align-items-center">
+            <div class="col d-flex justify-content-center m-0">
+                <div class = "coca-cola-logo h1 mt-2">
+                    Coca-Cola
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center m-0">
+                <div id = 'greeting' class = "bold text-white h6"></div>
+            </div>
+            <div class="col d-flex justify-content-center m-0">
+                <div id = 'userType' class = "bold text-white h6"></div>
+            </div>
+            <div class = "col d-flex justify-content-center m-0">
+                <form action = "manageUsers.html">
+                    <button class = "btn btn-danger border border-white bold h6">Manage Users</button>
+                </form>
+            </div>
+            <div id = "logout" class = "col d-flex justify-content-center m-0">
+                <form action = "signIn.html">
+                    <button class = "btn btn-danger border border-white bold h6">Logout</button>
+                </form>
+            </div>
         </div>
     </div>
 <div class="container d-flex flex-column justify-content-center align-items-center">

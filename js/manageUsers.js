@@ -50,10 +50,17 @@ const modalPasswordInput = document.getElementById('modalPasswordInput'); // mod
 const invalidModalPassword = document.getElementById('invalidModalPassword');// invalid modal password text 
 const modalRePasswordInput = document.getElementById('modalRePasswordInput')// reenter modal passwod input
 const invalidReModalPassword = document.getElementById('invalidReModalPassword');// reeenter invalid text
+const userTypeInput = document.getElementById('userTypeInput'); 
+const searchButton = document.getElementById('search-button');
+const searchInput = document.getElementById('search-input');
 
 var users = []; 
 var selectedUser = null; // global variable watchout
 var userCnt = 0; 
+
+//console.log(userTypeInput.value);
+
+//toast.show();
 
 function handleResetPassword(event){
 
@@ -127,9 +134,6 @@ resetPasswordModalButton.addEventListener('click',async () => {
     
     let id = selectedUser.id; 
     let password = modalPasswordInput.value; 
-
-    
-
     let data = {id,password};
     console.log(data);
 
@@ -144,9 +148,7 @@ resetPasswordModalButton.addEventListener('click',async () => {
 
     let response = await fetch('http://localhost:3001/setPassword',options); 
 
-    console.log(response);
-
-
+    resetPasswordModal.hide();
 })
 
 resetPasswordModal.addEventListener('hidden.bs.modal',() => {
@@ -194,7 +196,7 @@ deleteModalButton.addEventListener('click',async (event) => {
     console.log(selectedUser.id);
     await fetch(`http://localhost:3001/deleteUser/${selectedUser.id}`,{method:'DELETE'});
     //http://localhost:3001/deleteUser/7462
-    window.location.reload(); 
+    loadData();
     console.log("hello");
     
 })
@@ -259,9 +261,31 @@ async function handleView(event){
     s3ProgressPercentage.innerText = `${userProgress.s3}%`;
 }
 
-function displayUsers(){
+function displayUsers(userType,filterCriteria){ 
+    console.log(userType)
+    console.log(users);
+    //let userTypesArr = ['All','Admin','Leader','Operator'];
+    
+    let tempUsers = users.filter((user) => {
+        if (userType != null && userTypeInput.value != 'All' && userTypeInput.value != user.role){
+            return false; 
+        }
+        
+        if (filterCriteria != null && filterCriteria != user.fname && filterCriteria != user.lname && filterCriteria != user.id){
+            return false; 
+        }
+        
 
-    users.forEach((user,index) => {
+        return true; 
+    });
+
+    console.log(tempUsers);
+    
+    while(tableBody.firstChild){
+        tableBody.removeChild(tableBody.firstChild);
+    }
+
+    tempUsers.forEach((user,index) => {
         const tableRow = document.createElement('tr'); 
         const th = document.createElement('th'); 
         th.setAttribute("scope","row");
@@ -274,7 +298,7 @@ function displayUsers(){
         tdLname.innerText = `${user.lname}`; 
        
         const tdUserType = document.createElement('td'); 
-        tdUserType.innerText = `${user.role}`; 
+        tdUserType.innerText = `${user.role}`;
 
         const tdResetpassword = document.createElement('td'); 
         const resetPasswordButton = document.createElement('button'); 
@@ -295,7 +319,7 @@ function displayUsers(){
         viewButton.setAttribute("data-bs-target","#viewUserModal")
         viewButton.innerText = `View`; 
         tdView.append(viewButton); 
-        
+
         const tdDelete = document.createElement('td');
         const deleteButton = document.createElement('button'); 
         deleteButton.setAttribute("class","btn btn-sm btn-danger");
@@ -314,14 +338,14 @@ function displayUsers(){
 
 async function loadData(){
 
+    users = []; 
     let response = await fetch(`http://localhost:3001/getSignedInId`);
     
     if (!response.ok)
         return;
 
     let result = await response.json(); 
-    console.log(result);
-
+    //console.log(result);
     greeting.innerText = `${result.fname} ${result.lname}`; 
     userType.innerText = `User Type: ${result.role}`;
 
@@ -331,10 +355,29 @@ async function loadData(){
         return; 
 
     users = await usersResponse.json(); 
-    console.log(users);
+    //console.log(users);
+
 
     displayUsers(); 
 }
+
+userTypeInput.addEventListener('change',() => {
+    console.log(userTypeInput.value);
+    displayUsers(userTypeInput.value);
+
+})
+
+searchInput.addEventListener('input',() => {
+    if (searchInput.value === ''){
+        displayUsers(userTypeInput.value); 
+    }
+})
+
+searchButton.addEventListener('click',() => {
+    if (searchInput.value != ''){
+        displayUsers(userTypeInput.value,searchInput.value);
+    }
+})
 
 modalPasswordInput.addEventListener('input',() => {
     modalPasswordInput.classList.remove('is-invalid'); 
@@ -499,5 +542,5 @@ addUserButton.addEventListener('click',async () => {
         return; 
     }
 
-    window.location.reload();
+    loadData();
 })
