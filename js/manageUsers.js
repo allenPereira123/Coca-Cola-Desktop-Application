@@ -147,8 +147,8 @@ resetPasswordModalButton.addEventListener('click',async () => {
     }
 
     let response = await fetch('http://localhost:3001/setPassword',options); 
-
-    resetPasswordModal.hide();
+    var modal = bootstrap.Modal.getInstance(resetPasswordModal);
+    modal.hide();
 })
 
 resetPasswordModal.addEventListener('hidden.bs.modal',() => {
