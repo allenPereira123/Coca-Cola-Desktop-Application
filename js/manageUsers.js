@@ -53,14 +53,12 @@ const invalidReModalPassword = document.getElementById('invalidReModalPassword')
 const userTypeInput = document.getElementById('userTypeInput'); 
 const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-input');
-
+const addedUserToast = document.getElementById('added-user-toast');
+const deletedUserToast = document.getElementById('deleted-user-toast');
+const changedPassword = document.getElementById('changed-password-toast');
+var addedUser = false; 
 var users = []; 
 var selectedUser = null; // global variable watchout
-var userCnt = 0; 
-
-//console.log(userTypeInput.value);
-
-//toast.show();
 
 function handleResetPassword(event){
 
@@ -147,9 +145,9 @@ resetPasswordModalButton.addEventListener('click',async () => {
     }
 
     let response = await fetch('http://localhost:3001/setPassword',options); 
-    var modal = bootstrap.Modal.getInstance(resetPasswordModal);
-    modal.hide();
-})
+    sessionStorage.setItem("changedPassword","true");
+    window.location.reload();
+});
 
 resetPasswordModal.addEventListener('hidden.bs.modal',() => {
     let inputs = [modalPasswordInput,modalRePasswordInput];
@@ -196,8 +194,10 @@ deleteModalButton.addEventListener('click',async (event) => {
     console.log(selectedUser.id);
     await fetch(`http://localhost:3001/deleteUser/${selectedUser.id}`,{method:'DELETE'});
     //http://localhost:3001/deleteUser/7462
+    //loadData();
+    //console.log("hello");
+    sessionStorage.setItem('deletedUser',"true");
     loadData();
-    console.log("hello");
     
 })
 
@@ -213,7 +213,7 @@ function handleDelete(event){
         }
     }
 
-    console.log(targetUser);
+    //console.log(targetUser);
 
     deleteUserMessage.innerText = `Deleting user ${targetUser.id} cannot be undone.`
 
@@ -262,8 +262,6 @@ async function handleView(event){
 }
 
 function displayUsers(userType,filterCriteria){ 
-    console.log(userType)
-    console.log(users);
     //let userTypesArr = ['All','Admin','Leader','Operator'];
     
     let tempUsers = users.filter((user) => {
@@ -278,8 +276,6 @@ function displayUsers(userType,filterCriteria){
 
         return true; 
     });
-
-    console.log(tempUsers);
     
     while(tableBody.firstChild){
         tableBody.removeChild(tableBody.firstChild);
@@ -337,6 +333,25 @@ function displayUsers(userType,filterCriteria){
 
 
 async function loadData(){
+
+    if (sessionStorage.getItem("addedUser") === 'true'){
+        let toast = new bootstrap.Toast(addedUserToast); 
+        toast.show();
+        sessionStorage.removeItem("addedUser"); 
+    }
+    
+    if (sessionStorage.getItem("deletedUser") === 'true'){
+        let toast = new bootstrap.Toast(deletedUserToast); 
+        toast.show();
+        sessionStorage.removeItem("deletedUser"); 
+    }
+    
+    if (sessionStorage.getItem("changedPassword") === 'true'){
+        let toast = new bootstrap.Toast(changedPassword); 
+        toast.show();
+        sessionStorage.removeItem("changedPassword"); 
+    }
+    
 
     users = []; 
     let response = await fetch(`http://localhost:3001/getSignedInId`);
@@ -507,8 +522,6 @@ addUserButton.addEventListener('click',async () => {
     let fname = fnameInput.value; 
     let lname = lnameInput.value;
     let password = passwordInput.value; 
-    //let secQ = selectQuestion.value;
-    //let secA = secAnswer.value; 
     let role = ''; 
     
     if (selectUserType.value == 1)
@@ -542,5 +555,6 @@ addUserButton.addEventListener('click',async () => {
         return; 
     }
 
-    loadData();
+    sessionStorage.setItem("addedUser","true"); 
+    window.location.reload();
 })
