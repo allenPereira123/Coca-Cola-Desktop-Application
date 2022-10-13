@@ -16,7 +16,7 @@ const createWindow = () => {
   })
 
   win.loadFile('views/signin.html');
-  //win.setMenuBarVisibility(false);
+  win.setMenuBarVisibility(false);
 }
 
 
