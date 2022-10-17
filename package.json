@@ -1,5 +1,5 @@
 {
-  "name": "desktop-app",
+  "name": "CocaColaVRPortal",
   "version": "1.0.0",
   "description": "electron project",
   "main": "main.js",
@@ -37,7 +37,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "desktop_app"
+            "name": "CocaColaVRPortal"
           }
         },
         {

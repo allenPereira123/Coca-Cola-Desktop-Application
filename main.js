@@ -6,6 +6,8 @@ const path = require('path')
 require('./server/index')
 var win;
 
+if(require('electron-squirrel-startup')) return;
+
 const createWindow = () => {
     win = new BrowserWindow({
     webPreferences: {
