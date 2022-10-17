@@ -16,6 +16,8 @@ const s2ProgressBar = document.getElementById('s2-progress-bar');
 const s2ProgressPercentage = document.getElementById('s2-progress-percentage');
 const s3ProgressBar = document.getElementById('s3-progress-bar');
 const s3ProgressPercentage = document.getElementById('s3-progress-percentage');
+const s4ProgressBar = document.getElementById('s4-progress-bar');
+const s4ProgressPercentage = document.getElementById('s4-progress-percentage');
 const greeting = document.getElementById('greeting'); 
 const userType = document.getElementById('userType'); 
 const logout = document.getElementById('logout');
@@ -61,6 +63,11 @@ async function loadData(){
 
     s3ProgressBar.style = `width:${userProgress.s3}%`; 
     s3ProgressPercentage.innerText = `${userProgress.s3}%`;
+
+    s4ProgressBar.style = `width:${userProgress.s4}%`; 
+    s4ProgressPercentage.innerText = `${userProgress.s4}%`;
+
+
     
 } 
 
