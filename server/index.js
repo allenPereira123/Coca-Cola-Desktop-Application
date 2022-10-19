@@ -238,7 +238,7 @@ app_.get('/getUserProgress/:id',(req,res) => {
   })
 });
 
-// gets specific scenario user progress
+// gets specific scenario user progress of signed in user
 app_.get('/getScenarioProgress/:sid',(req,res) => {
     
     let scenarioId = req.params.sid;
