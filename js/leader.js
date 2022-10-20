@@ -2,13 +2,12 @@ var child = require('child_process').execFile;
 var executablePath = "C:\\Users\\al511555\\Documents\\Simulator\\Simulator.exe";
 const productFeed = document.getElementById('product-feed');
 const blankMagazine = document.getElementById('blank-magazine');
-const collatingSystem = document.getElementById('collating-system');
+const collatingSystem = document.getElementById('collating-system-ob1');
 const blankSuction = document.getElementById('blank_suction');
-const gluing = document.getElementById('gluing');
 const filmWrap = document.getElementById('film-wrap');
-const hmi = document.getElementById('hmi');
 const blankFeed = document.getElementById('blank-feed')
-const folding = document.getElementById('folding');
+const folding = document.getElementById('folding-gluing');
+const overhead2 = document.getElementById('overhead2'); 
 const s1ProgressBar = document.getElementById('s1-progress-bar');
 const s1ProgressPercentage = document.getElementById('s1-progress-percentage');
 const s2ProgressBar = document.getElementById('s2-progress-bar');
@@ -47,12 +46,10 @@ async function loadData(){
     productFeed.innerText = (userProgress.product_feed == 0) ? 'Incomplete' : 'Complete';
     blankMagazine.innerText = (userProgress.blank_magazine == 0) ? 'Incomplete' : 'Complete';
     collatingSystem.innerText = (userProgress.collating_system == 0) ? 'Incomplete' : 'Complete';
-    blankSuction.innerText = (userProgress.blank_suction == 0) ? 'Incomplete' : 'Complete';
-    gluing.innerText = (userProgress.gluing == 0) ? 'Incomplete' : 'Complete';
     filmWrap.innerText = (userProgress.film_wrap == 0) ? 'Incomplete' : 'Complete';
-    hmi.innerText = (userProgress.hmi == 0) ? 'Incomplete' : 'Complete';
     blankFeed.innerText = (userProgress.blank_feed == 0) ? 'Incomplete' : 'Complete';
     folding.innerText = (userProgress.folding == 0) ? 'Incomplete' : 'Complete';
+    overhead2.innerText = (userProgress.overhead2 == 0) ? 'Incomplete' : 'Complete';
 
     s1ProgressBar.style = `width:${userProgress.s1}%`; 
     s1ProgressPercentage.innerText = `${userProgress.s1}%`; 
