@@ -1,5 +1,7 @@
+const path = require('path'); 
 var child = require('child_process').execFile;
-var executablePath = "C:\\Users\\al511555\\Documents\\Simulator\\Simulator.exe";
+const refresh = document.getElementById('refresh');
+var executablePath = path.join(__dirname,'..\\Simulator\\Simulator.exe')
 const productFeed = document.getElementById('product-feed');
 const blankMagazine = document.getElementById('blank-magazine');
 const collatingSystem = document.getElementById('collating-system-ob1');
@@ -65,6 +67,11 @@ async function loadData(){
 } 
 
 loadData(); 
+
+refresh.addEventListener('click',() => {
+    window.location.reload();
+})
+
 
 launch.addEventListener('click', () => {
     child(executablePath, function (err, data) {

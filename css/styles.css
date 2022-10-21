@@ -112,6 +112,10 @@ body{
     font-size:1.3vw;;
 }
 
+#refresh:hover{
+    cursor:pointer;
+}
+
 
 #errorAddingUserText{
     display:none; 
@@ -128,6 +132,4 @@ a:visited {color: white;}   /* visited link */
 a:hover {color: white;}     /* mouse over link */
 a:active {color: white;}
 
-#forgotPasswordLink:hover{
-    color: #0000EE;
-}
+

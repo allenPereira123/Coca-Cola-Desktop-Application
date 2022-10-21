@@ -4,11 +4,9 @@ const path = require('path');
 // child  process required to launch VR application from desktop app
 // https://ourcodeworld.com/articles/read/154/how-to-execute-an-exe-file-system-application-using-electron-framework
 var child = require('child_process').execFile;
-//var executablePath = "C:\\Users\\al511555\\Documents\\Simulator\\Simulator.exe"
-var executablePath = path.join(__dirname,'..\VR\VR-Placeholder.exe')
+var executablePath = path.join(__dirname,'..\\Simulator\\Simulator.exe')
 
-console.log(executablePath);
-
+const refresh = document.getElementById('refresh');
 const productFeed = document.getElementById('product-feed');
 const blankMagazine = document.getElementById('blank-magazine');
 const collatingSystem = document.getElementById('collating-system-ob1');
@@ -79,6 +77,10 @@ async function loadData(){
 } 
 
 loadData();
+
+refresh.addEventListener('click',() => {
+    window.location.reload();
+})
 
 // launches the VR application once user clicks "launch application button"
 launch.addEventListener('click', () => {
