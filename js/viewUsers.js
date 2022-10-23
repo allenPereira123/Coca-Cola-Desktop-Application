@@ -8,6 +8,7 @@ const folding = document.getElementById('folding-gluing');
 const collatingSystem = document.getElementById('collating-system-ob1');
 const s1ProgressBar = document.getElementById('s1-progress-bar');
 const overhead2 = document.getElementById('overhead2'); 
+const heatTunnel = document.getElementById('heat-tunnel');
 const s1ProgressPercentage = document.getElementById('s1-progress-percentage');
 const s2ProgressBar = document.getElementById('s2-progress-bar');
 const s2ProgressPercentage = document.getElementById('s2-progress-percentage');
@@ -58,6 +59,7 @@ async function handleView(event){
     blankFeed.innerText = (userProgress.blank_feed == 0) ? 'Incomplete' : 'Complete';
     folding.innerText = (userProgress.folding == 0) ? 'Incomplete' : 'Complete';
     overhead2.innerText = (userProgress.overhead2 == 0) ? 'Incomplete' : 'Complete';
+    heatTunnel.innerText = (userProgress.heat_tunnel == 0) ? 'Incomplete' : 'Complete';
 
     s1ProgressBar.style = `width:${userProgress.s1}%`; 
     s1ProgressPercentage.innerText = `${userProgress.s1}%`; 

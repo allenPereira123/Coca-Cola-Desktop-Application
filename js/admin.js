@@ -14,6 +14,7 @@ const filmWrap = document.getElementById('film-wrap');
 const blankFeed = document.getElementById('blank-feed')
 const folding = document.getElementById('folding-gluing');
 const overhead2 = document.getElementById('overhead2'); 
+const heatTunnel = document.getElementById('heat-tunnel');
 const s1ProgressBar = document.getElementById('s1-progress-bar');
 const s1ProgressPercentage = document.getElementById('s1-progress-percentage');
 const s2ProgressBar = document.getElementById('s2-progress-bar');
@@ -58,6 +59,7 @@ async function loadData(){
     blankFeed.innerText = (userProgress.blank_feed == 0) ? 'Incomplete' : 'Complete';
     folding.innerText = (userProgress.folding == 0) ? 'Incomplete' : 'Complete';
     overhead2.innerText = (userProgress.overhead2 == 0) ? 'Incomplete' : 'Complete';
+    heatTunnel.innerText = (userProgress.heat_tunnel == 0) ? 'Incomplete' : 'Complete';
 
     // widths of progress bars for scenario 1-4 determined by completion status
     s1ProgressBar.style = `width:${userProgress.s1}%`; 

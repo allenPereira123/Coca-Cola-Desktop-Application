@@ -32,12 +32,14 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {"icon" : "assets/coke"},
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "CocaColaVRPortal"
+            "name": "CocaColaVRPortal",
+            "iconURL":"assets/coke.ico",
+            "setupIcon": "assets/coke.ico"
           }
         },
         {
@@ -48,8 +50,13 @@
         },
         {
           "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
+          "config": {
+              "options": {
+                  "icon": "assets/coke.ico"
+              }
+          }
+      },
+        
         {
           "name": "@electron-forge/maker-rpm",
           "config": {}
