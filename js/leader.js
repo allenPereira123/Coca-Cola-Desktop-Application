@@ -1,3 +1,4 @@
+const path = require('path'); 
 var child = require('child_process').execFile;
 var executablePath = path.join(__dirname,'..\\Simulator\\Simulator.exe')
 
@@ -19,6 +20,9 @@ const s3ProgressBar = document.getElementById('s3-progress-bar');
 const s3ProgressPercentage = document.getElementById('s3-progress-percentage');
 const s4ProgressBar = document.getElementById('s4-progress-bar');
 const s4ProgressPercentage = document.getElementById('s4-progress-percentage');
+const safteyProgressBar = document.getElementById('saftey-progress-bar'); 
+const safteyProgressPercentage = document.getElementById('saftey-progress-percentage');
+const tutorial = document.getElementById('tutorial'); 
 const greeting = document.getElementById('greeting'); 
 const userType = document.getElementById('userType'); 
 const logout = document.getElementById('logout');
@@ -47,6 +51,7 @@ async function loadData(){
 
     let userProgress = await response.json(); 
 
+
     
     productFeed.innerText = (userProgress.product_feed == 0) ? 'Incomplete' : 'Complete';
     blankMagazine.innerText = (userProgress.blank_magazine == 0) ? 'Incomplete' : 'Complete';
@@ -56,6 +61,7 @@ async function loadData(){
     folding.innerText = (userProgress.folding == 0) ? 'Incomplete' : 'Complete';
     overhead2.innerText = (userProgress.overhead2 == 0) ? 'Incomplete' : 'Complete';
     heatTunnel.innerText = (userProgress.heat_tunnel == 0) ? 'Incomplete' : 'Complete';
+    tutorial.innerText = (userProgress.tutorial == 0) ? 'Incomplete' : 'Complete';
 
     s1ProgressBar.style = `width:${userProgress.s1}%`; 
     s1ProgressPercentage.innerText = `${userProgress.s1}%`; 
@@ -67,7 +73,10 @@ async function loadData(){
     s3ProgressPercentage.innerText = `${userProgress.s3}%`;
 
     s4ProgressBar.style = `width:${userProgress.s4}%`; 
-    s4ProgressPercentage.innerText = `${userProgress.s4}%`
+    s4ProgressPercentage.innerText = `${userProgress.s4}%`;
+
+    safteyProgressBar.style = `width:${userProgress.s5}%`; 
+    safteyProgressPercentage.innerText = `${userProgress.s5}%`;
     
 } 
 
