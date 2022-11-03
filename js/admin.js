@@ -4,7 +4,7 @@ const path = require('path');
 // child  process required to launch VR application from desktop app
 // https://ourcodeworld.com/articles/read/154/how-to-execute-an-exe-file-system-application-using-electron-framework
 var child = require('child_process').execFile;
-var executablePath = path.join(__dirname,'..\\Simulator\\Simulator.exe')
+var executablePath = path.join(__dirname,'..\\Builds\\Simulator.exe')
 
 const refresh = document.getElementById('refresh');
 const productFeed = document.getElementById('product-feed');
