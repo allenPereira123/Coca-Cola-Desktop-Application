@@ -16,8 +16,6 @@ const s3ProgressBar = document.getElementById('s3-progress-bar');
 const s3ProgressPercentage = document.getElementById('s3-progress-percentage');
 const s4ProgressBar = document.getElementById('s4-progress-bar');
 const s4ProgressPercentage = document.getElementById('s4-progress-percentage');
-const safteyProgressBar = document.getElementById('saftey-progress-bar'); 
-const safteyProgressPercentage = document.getElementById('saftey-progress-percentage');
 const tutorial = document.getElementById('tutorial'); 
 const greeting = document.getElementById('greeting'); 
 const userType = document.getElementById('userType'); 
@@ -76,9 +74,6 @@ async function handleView(event){
 
     s4ProgressBar.style = `width:${userProgress.s4}%`; 
     s4ProgressPercentage.innerText = `${userProgress.s4}%`;
-
-    safteyProgressBar.style = `width:${userProgress.s5}%`; 
-    safteyProgressPercentage.innerText = `${userProgress.s5}%`;
 }
 
 function displayUsers(userType,filterCriteria,signedInId){
