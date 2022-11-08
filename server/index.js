@@ -148,7 +148,7 @@ app_.post('/login',(req,res) => {
   db.get(sql,[id],async (err,user) => { 
     
     if (err){
-        return res.status(500).send(error); 
+        return res.status(500).send(err); 
     }
 
     if (user){
