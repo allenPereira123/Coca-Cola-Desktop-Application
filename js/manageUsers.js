@@ -266,8 +266,12 @@ async function handleView(event){
     s4ProgressPercentage.innerText = `${userProgress.s4}%`;
 }
 
-function displayUsers(userType,filterCriteria,signedInId){ 
+async function displayUsers(userType,filterCriteria){ 
     //let userTypesArr = ['All','Admin','Leader','Operator'];
+
+    let response = await fetch(`http://localhost:3001/getSignedInId`);
+    let signedInId = await response.json(); 
+    console.log(signedInId.id);
     
     let tempUsers = users.filter((user) => {
         if (userType != null && userTypeInput.value != 'All' && userTypeInput.value != user.role){
@@ -288,7 +292,7 @@ function displayUsers(userType,filterCriteria,signedInId){
 
     tempUsers.forEach((user,index) => {
 
-        if (user.id == '0' || user.id === signedInId){
+        if (user.id == '0' || user.id === signedInId.id){
             return
         }
 
@@ -385,7 +389,7 @@ async function loadData(){
     //console.log(users);
 
 
-    displayUsers(null,null,result.id); 
+    displayUsers(null,null); 
 }
 
 userTypeInput.addEventListener('change',() => {
